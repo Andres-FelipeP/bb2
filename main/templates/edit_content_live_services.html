@@ -1,0 +1,118 @@
+{% extends 'base_dashboard.html' %} {% load static %}
+{% block content %}
+
+
+<div class="container my-5 pt-5 ">
+    <h2 class="text-center p-5">Edit Services Catalog</h2>
+    <div class="card shadow-lg border-0 rounded-4 ">
+        <div class="card-body p-5">
+            <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate id="ServicesForm">
+                {% csrf_token %}
+
+                <!-- Banner Section -->
+                <div class="mb-5">
+                    <h4 class="mb-3 fw-semibold text-secondary border-bottom pb-2">Header Section</h4>
+                    <div class="card border-dashed bg-danger bg-opacity-10">
+                        <div class="card-body text-center py-4 " >
+                            <div class="mb-3">
+                                <i class="bi bi-image fs-1 text-muted"></i>
+                            </div>
+                            {{ service_form.banner }}
+                            <small class="text-muted d-block mt-2">Recommended banner size: 1500x500 px</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-5">
+                    <button type="submit" class="btn btn-book-categories-2 btn-lg px-5 py-3">
+                        <i class="bi bi-save2 me-2"></i>Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--Preview-->
+<div class="bg-dark text-secondary-emphasis p-3 text-center ">
+    <h2 class="text-light">Preview</h2>
+    <p class="text-light">Observe in real time how customers will view your website</p>
+</div>
+<section class="hero">
+    <img id="preview-service-banner" src="{{ service.banner.url }}" alt="Beauty salon background" class="hero-bg">
+    <div class="hero-content">
+        <h1>Services</h1>
+        <p>Pinky Beauty Bar</p>
+    </div>
+</section>
+
+<div class="container ">
+    <div class="text-center mt-5">
+        <h1 class="text-pink ">Where Beauty Begins</h1>
+        <p class="">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sagittis nisi neque.
+        </p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4 d-flex justify-content-center">
+        {% for product in products %}
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card text-center card-cat">
+                <img src="{{ product.image1.url }}" class="card-img-top p-2" alt="Facial Treatment">
+                <div class="card-body">
+                    <h5 class="card-title">Where Beauty Begins</h5>
+                    <p class="card-text border-bottom p-1">{{ product.short_subtittle }}</p>
+                    <div class="row mb-3">
+                        <div class="col-6 border-end">
+                            <span>Time: {{ product.duration }} min</span>
+                        </div>
+                        <div class="col-6">
+                            <span>Price: {{ product.price }}$</span>
+                        </div>
+                    </div>
+                    <a class="btn btn-book-categories rounded-pill" href="#">Book an Appointment</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Configuración de previews para imágenes
+        const imageFields = [
+            { inputName: 'banner', previewId: 'preview-service-banner' },
+
+        ];
+
+        imageFields.forEach((field) => {
+            const input = document.querySelector(`input[name="${field.inputName}"]`);
+            const preview = document.getElementById(field.previewId);
+            const clearCheckbox = document.querySelector(`input[name="${field.inputName}-clear"]`);
+
+            if (input && preview) {
+                // Manejar selección de archivo
+                input.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => preview.src = e.target.result;
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
+
+    });
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,361 @@
+{% extends 'base_dashboard.html' %} {% load static %}
+{% block content %}
+
+
+<div class="container my-5 pt-5 ">
+    <h2 class="text-center p-5">Edit Product</h2>
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+
+            <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                {% csrf_token %}
+
+                <div class="row g-4">
+                    <!-- Left Column -->
+                    <div class="col-lg-6">
+                        <!-- Main Info -->
+                        <h4 class="mb-3 fw-semibold text-secondary border-bottom pb-2">Main Info</h4>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    {{ product_form.tittle }}
+                                    <label for="{{ product_form.tittle.id_for_label }}">Product Title</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    {{ product_form.subtittle }}
+                                    <label for="{{ product_form.subtittle.id_for_label }}">Subtitle</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ product_form.duration }}
+                                    <label for="{{ product_form.duration.id_for_label }}">Duration</label>
+                                    <small class="text-muted ms-2">(in Minutes)</small>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ product_form.price }}
+                                    <label for="{{ product_form.price.id_for_label }}">Price</label>
+                                    <small class="text-muted ms-2">(USD)</small>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h5 class="mb-3 fw-semibold text-secondary border-bottom pb-2">Main Banner</h5>
+                                <div class="card border-dashed bg-danger bg-opacity-10">
+                                    <div class="card-body text-center">
+                                        {{ product_form.banner }}
+                                        <small class="text-muted d-block mt-2">Recommended size: 1200x800 px</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h5 class="mb-3 fw-semibold text-secondary border-bottom pb-2">Select Categories</h5>
+                                <div class="card border-dashed bg-danger bg-opacity-10">
+                                    <div class="card-body text-center">
+                                        {{ product_form.categories }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-lg-6">
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <h4 class="mb-3 fw-semibold text-secondary border-bottom pb-2">Description</h4>
+                            <div class="form-floating mb-3">
+                                {{ product_form.description }}
+                                <label for="{{ product_form.description.id_for_label }}">Product Description</label>
+                            </div>
+                            <div class="form-floating">
+                                {{ product_form.short_subtittle }}
+                                <label for="{{ product_form.short_subtittle.id_for_label }}">Product short_subtittle</label>
+                                <small class="text-muted d-block mt-2">It must be short, it appears on the catalog page</small>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Images -->
+                        <div class="mt-4">
+                            <h5 class="mb-3 fw-semibold text-secondary">Gallery Images</h5>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-dashed bg-danger bg-opacity-10">
+                                        <div class="card-body text-center">
+                                            {{ product_form.image1 }}
+                                            <small class="text-muted d-block mt-2">Image 1</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-dashed bg-danger bg-opacity-10">
+                                        <div class="card-body text-center">
+                                            {{ product_form.image2 }}
+                                            <small class="text-muted d-block mt-2">Image 2</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-dashed bg-danger bg-opacity-10">
+                                        <div class="card-body text-center">
+                                            {{ product_form.image3 }}
+                                            <small class="text-muted d-block mt-2">Image 3</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-5">
+                    <button type="submit" class="btn btn-book-categories-2 btn-lg px-5 py-3">
+                        <i class="bi bi-save2 me-2"></i>Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <h2 class="text-center p-5">Benefits, Process, Myths & Recommendations</h2>
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="row g-5">
+            <div class="col-lg-6 ">
+                <div class="card-body p-5">
+                    <h2 class="d-flex justify-content-between align-items-center text-secondary mb-4">
+                        Benefits
+                        <a href="{% url 'add_benefit' product.id%}" class="btn btn-book-categories-2 btn-sm">+ Add</a>
+                    </h2>
+                    <div class="benefits-container">
+                        {% for benefit in benefits %}
+                            <form method="POST" action="{% url 'edit_benefit' benefit.id %}" class="card mb-4 shadow-sm bg-danger bg-opacity-10" >
+                                <div class="card-body">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label class="form-label">Benefit Tittle</label>
+                                        <input type="text" name="benefits_tittle_{{ benefit.id }}" value="{{ benefit.tittle }}" class="form-control form-control-lg ">
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label">Description</label>
+                                        <textarea name="benefits_description_{{ benefit.id }}" class="form-control " rows="3">{{ benefit.description }}</textarea>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <a href="{% url 'delete_benefit' benefit.id %}"
+                                            class="btn btn-outline-danger">Delete</a>
+                                        <button type="submit" class="btn btn-book-categories-2">Save Changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 ">
+                <div class="card-body p-5">
+                    <h2 class="d-flex justify-content-between align-items-center mb-4 text-secondary">
+                        Process
+                        <a href="{% url 'add_process' product.id %}" class="btn btn-book-categories-2 btn-sm">+ Add</a>
+                    </h2>
+                    <div class="benefits-container">
+                        {% for proc in process %}
+                            <form method="POST" action="{% url 'edit_process' proc.id %}" class="card mb-4 shadow-sm bg-danger bg-opacity-10">
+                                <div class="card-body">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label class="form-label text-secondary">Process Tittle</label>
+                                        <input type="text" name="process_tittle_{{ proc.id }}" value="{{ proc.tittle }}" class="form-control form-control-lg">
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label text-secondary">Description</label>
+                                        <textarea name="process_description_{{ proc.id }}" class="form-control" rows="3">{{ proc.description }}</textarea>
+                                    </div>
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <a href="{% url 'delete_process' proc.id %}"
+                                            class="btn btn-outline-danger">Delete</a>
+                                        <button type="submit" class="btn btn-book-categories-2">Save Changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 ">
+                <div class="card-body p-5">
+                    <h2 class="d-flex justify-content-between align-items-center mb-4 text-secondary">
+                        Myths
+                        <a href="{% url 'add_myths' product.id %}" class="btn btn-book-categories-2 btn-sm ">+ Add</a>
+                    </h2>
+                    <div class="benefits-container">
+                        {% for Myth in myths %}
+                            <form method="POST" action="{% url 'edit_myths' Myth.id %}" class="card mb-4 shadow-sm bg-danger bg-opacity-10">
+                                <div class="card-body">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label class="form-label text-secondary">Myth Tittle</label>
+                                        <input type="text" name="myths_tittle_{{ Myth.id }}" value="{{ Myth.tittle }}" class="form-control form-control-lg">
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label text-secondary">Description</label>
+                                        <textarea name="myths_description_{{ Myth.id }}" class="form-control" rows="3">{{ Myth.description }}</textarea>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <a href="{% url 'delete_myths' Myth.id %}"
+                                            class="btn btn-outline-danger">Delete</a>
+                                        <button type="submit" class="btn btn-book-categories-2">Save Changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 ">
+                <div class="card-body p-5">
+                    <h2 class="d-flex justify-content-between align-items-center mb-4 text-secondary">
+                        Recommendations
+                        <a href="{% url 'add_recommendations' product.id %}" class="btn btn-book-categories-2 btn-sm">+ Add</a>
+                    </h2>
+                    <div class="benefits-container">
+                        {% for Recommendation in recommendations %}
+                            <form method="POST" action="{% url 'edit_recommendations' Recommendation.id %}" class="card mb-4 shadow-sm">
+                                <div class="card-body bg-danger bg-opacity-10">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label class="form-label text-secondary">Recommendation Tittle</label>
+                                        <input type="text" name="recommendations_tittle_{{ Recommendation.id }}" value="{{ Recommendation.tittle }}" class="form-control form-control-lg ">
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label text-secondary">Description</label>
+                                        <textarea name="recommendations_description_{{ Recommendation.id }}" class="form-control" rows="3">{{ Recommendation.description }}</textarea>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <a href="{% url 'delete_recommendations' Recommendation.id %}"
+                                            class="btn btn-outline-danger">Delete</a>
+                                        <button type="submit" class="btn btn-book-categories-2">Save Changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container my-5 pt-5 ">
+    <h2 class="text-center p-5">Beauty Salon Photo Gallery</h2>
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="container-fluid  ">
+            <!-- Galería de Fotos -->
+            <h2 class=" mt-4 text-center">Galería de Fotos</h2>
+            <div class="row justify-content-center p-3 p-md-5">
+                <div class="col-12">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        {% for photo in photo_gallery %}
+                        <div class="col">
+                            <div class="card h-100 shadow bg-danger bg-opacity-10">
+                                {% if photo.image %}
+                                    <img src="{{ photo.image.url }}" class="card-img-top img-fluid" alt="Imagen del producto" style="height: 200px; object-fit: cover;">
+                                {% else %}
+                                    <img src="{% static 'default/image_default.png' %}" class="card-img-top img-fluid" alt="Imagen por defecto" style="height: 200px; object-fit: cover;">
+                                {% endif %}
+                                <div class="card-body">
+                                    <form method="POST" action="{% url 'edit_photo' photo.id %}" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <label class="form-label text-secondary">Image</label>
+                                        <input type="file" name="image" class="form-control mb-2">
+
+                                        <label class="form-label text-secondary">Order</label>
+                                        <input type="number" name="order" value="{{ photo.order }}" class="form-control mb-2">
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <button type="submit" class="btn btn-book-categories-2 btn-sm">Actualizar</button>
+                                            <a href="{% url 'delete_photo' photo.id %}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="{% url 'add_photo' product.id %}" class="btn btn-book-categories-2">Agregar Foto</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Galería de Videos -->
+            <h2 class=" mt-5 text-center">Galería de Videos</h2>
+            <div class="row justify-content-center p-3 p-md-5">
+                <div class="col-12">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        {% for video in video_gallery %}
+                        <div class="col">
+                            <div class="card h-100 shadow bg-danger bg-opacity-10">
+                                <div class="card-body">
+                                    {% if video.video_file %}
+                                    <video class="w-100" controls style="height: 200px;">
+                                        <source src="{{ video.video_file.url }}" type="video/mp4">
+                                        Tu navegador no soporta videos.
+                                    </video>
+                                    {% elif video.video_youtube_url %}
+                                    <div class="ratio ratio-16x9">
+                                        <iframe src="{{ video.video_youtube_url }}" allowfullscreen></iframe>
+                                    </div>
+                                    {% else %}
+                                        <p class="text-muted">Sin video disponible</p>
+                                    {% endif %}
+
+                                    <form method="POST" action="{% url 'edit_video' video.id %}" enctype="multipart/form-data" class="mt-3">
+                                        {% csrf_token %}
+                                        <label class="form-label text-secondary">Video File</label>
+                                        <input type="file" name="video_file" class="form-control mb-2">
+
+                                        <label class="form-label text-secondary">It's a Youtube link? </label>
+                                        <input type="url" name="video_youtube_url" value="{{ video.video_youtube_url }}" class="form-control mb-2">
+
+                                        <label class="form-label text-secondary">Order </label>
+
+                                        <input type="number" name="order" value="{{ video.order }}" class="form-control mb-2" >
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <button type="submit" class="btn btn-book-categories-2 btn-sm">Actualizar</button>
+                                            <a href="{% url 'delete_video' video.id %}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="{% url 'add_video' product.id %}" class="btn btn-book-categories-2">Agregar Video</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

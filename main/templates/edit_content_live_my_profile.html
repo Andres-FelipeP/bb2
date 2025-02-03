@@ -1,0 +1,65 @@
+{% extends 'base_dashboard.html' %} {% load static %}
+{% block content %}
+
+
+<div class="container my-5 pt-5 ">
+    <h2 class="text-center p-5">Pinky Beauty Bar Info</h2>
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label text-secondary">Address</label>
+                    {{ form.address }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-secondary">Country Code</label>
+                    {{ form.country_code }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-secondary">Phone Number</label>
+                    {{ form.phone_number }}
+                </div>
+                <div class="text-center ">
+                    <button type="submit" class="btn w-50 btn-book-categories-2">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Preview-->
+<div class="bg-dark text-secondary-emphasis p-3 text-center ">
+    <h2 class="text-light">Preview</h2>
+    <p class="text-light">Observe in real time how customers will view your website</p>
+</div>
+<div class="container">
+
+    <div class="row ">
+            <div class="col-md-3 mt-5">
+
+                <div class=" text-pink mb-5 ">
+                    <p class=" text-dark">Book your Appointment</p>
+                    <h1 class="">Get in Touch</h1>
+                </div>
+
+                <div class="text-center mb-5 border-bottom">
+                    <h3 class="">Contact</h3>
+                    <h5 class="">+00 000 0000 0000</h5>
+                </div>
+                <div class="text-center mb-5">
+                    <h3 class="">Address</h3>
+                    <h5 class="">1060 Plaza Dr kissimmee fl 34743</h5>
+                </div>
+
+            </div>
+            <div class="col-md-9 ">
+                <div class="mt-5" id="map" style="height: 400px; width: 100%; z-index: 0"></div>
+            </div>
+    </div>
+</div>
+
+{% endblock %}

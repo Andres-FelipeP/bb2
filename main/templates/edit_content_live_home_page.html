@@ -1,0 +1,444 @@
+{% extends 'base_dashboard.html' %} {% load static %}
+{% block content %}
+
+
+<div class="container my-5 pt-5 ">
+    <h1 class="text-center p-5">Edit Your Home Page</h1>
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+            <form method="POST" id="homeContentForm" enctype="multipart/form-data" class="needs-validation" novalidate>
+                {% csrf_token %}
+
+
+                <div class="mb-5">
+                    <h4 class="mb-3 fw-semibold text-secondary border-bottom pb-2">Header Section</h4>
+                    <div class="card border-dashed">
+                        <div class="card-body text-center py-4 bg-danger bg-opacity-10">
+                            <div class="mb-3">
+                                <i class="bi bi-image fs-1 text-muted"></i>
+                            </div>
+                            {{ form.banner }}
+                            <small class="text-muted d-block mt-2">Recommended banner size: 1500x500 px</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-5">
+                    <div class="col-lg-6">
+                        <div class="mb-4">
+                            <h4 class="mb-3 fw-semibold text-secondary border-bottom pb-2 ">About Me</h4>
+
+                            <div class="form-floating mb-3">
+                                {{ form.who_am_i }}
+                                <label for="{{ form.who_am_i.id_for_label }}">Who am I?</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                {{ form.attitude }}
+                                <label for="{{ form.attitude.id_for_label }}">Description of my professional attitude</label>
+                            </div>
+
+                            <div class="form-floating">
+                                {{ form.skills }}
+                                <label for="{{ form.skills.id_for_label }}">My Skills</label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-4">
+                            <h4 class="mb-3 fw-semibold text-secondary border-bottom pb-2">Mission & Vision</h4>
+                            <div class="form-floating mb-3">
+                                {{ form.home_mission }}
+                                <label for="{{ form.home_mission.id_for_label }}">Personal Mission</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                {{ form.home_vision }}
+                                <label for="{{ form.home_vision.id_for_label }}">Personal Vision</label>
+                            </div>
+                            <div class="form-floating ">
+                                {{ form.slogan }}
+                                <label for="{{ form.slogan.id_for_label }}">Slogan</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-5">
+                    <div class="col-lg-12">
+                        <div class="mb-4">
+                            <h4 class="mb-3 fw-semibold text-secondary border-bottom pb-2 ">Gallery Images</h4>
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <div class="card border-dashed h-100 bg-danger bg-opacity-10">
+                                        <div class="card-body text-center py-4">
+                                            <small class="text-muted d-block mt-2">Image 1</small>
+                                            <i class="bi bi-person-square fs-1 text-muted"></i>
+                                            {{ form.image1 }}
+                                            <small class="text-muted d-block mt-2">Portrait Image (600x800 px)</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card border-dashed h-100 bg-danger bg-opacity-10">
+                                        <div class="card-body text-center py-4">
+                                            <small class="text-muted d-block mt-2">Image 2</small>
+                                            <i class="bi bi-person-square fs-1 text-muted"></i>
+                                            {{ form.image2 }}
+                                            <small class="text-muted d-block mt-2">Portrait Image (600x800 px)</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card border-dashed h-100 bg-danger bg-opacity-10">
+                                        <div class="card-body text-center py-4">
+                                            <small class="text-muted d-block mt-2">Image 3</small>
+                                            <i class="bi bi-person-square fs-1 text-muted"></i>
+                                            {{ form.image3 }}
+                                            <small class="text-muted d-block mt-2">Portrait Image (600x800 px)</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card border-dashed h-100 bg-danger bg-opacity-10">
+                                        <div class="card-body text-center py-4">
+                                            <small class="text-muted d-block mt-2">Image 4</small>
+                                            <i class="bi bi-person-square fs-1 text-muted"></i>
+                                            {{ form.image4 }}
+                                            <small class="text-muted d-block mt-2">Portrait Image (600x800 px)</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-5">
+                    <button type="submit" class="btn btn-book-categories-2 btn-lg px-5 py-3">
+                        <i class="bi bi-save2 me-2"></i>Save Changes
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="bg-dark text-secondary-emphasis p-3 text-center ">
+    <h2 class="text-light">Preview</h2>
+    <p class="text-light">Observe in real time how customers will view your website</p>
+</div>
+
+<!--Preview Home Page-->
+
+<section class="hero">
+    <img id="preview-banner" src="{{ home_content.banner.url }}" alt="Beauty salon background" class="hero-bg">
+    <div class="hero-content text-bg">
+        <h1 class="">Pinky Beauty Bar</h1>
+        <h4 class="">By Juliana Lozano</h4>
+        <p id="preview-slogan">{{ home_content.slogan }}</p>
+    </div>
+</section><!--Hero-->
+<!--About Me-->
+<div class="container ">
+    <div class="justify-content-center align-items-center d-flex flex-column mt-5 text-pink">
+        <h1>Juliana Lozano</h1>
+        <h4>About Me</h4>
+        <div class="text-center rounded-circle-img mt-2 mb-4">
+            <img id="preview-image1" src="{{ home_content.image1.url }}" alt="Avatar" class="rounded-circle gc" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+    </div>
+    <div class="vh-50 text-center mb-5">
+        <h3 class=" ">Who Am I?</h3>
+        <p id="preview-who-am-i">{{ home_content.who_am_i }}</p>
+
+        <h3  class="">Skills</h3>
+        <p id="preview-skills">{{ home_content.skills }}</p>
+    </div>
+</div><!--About Me-->
+
+<!--SalonImages-->
+<div class="bg-softpink border-section ">
+    <section class="multimedia-section">
+        <div class="container">
+            <div class="text-center text-pink my-5">
+                <h1 class="">Beauty Services</h1>
+                <h5 class="">A space created for your beauty.</h5>
+            </div>
+            <div class="owl-carousel media-carousel">
+                {% for salon in salon_images %}
+                <div class="item d-flex justify-content-center align-items-center">
+                    <div class="card bg-transparent border-0 mb-3" style="width: 22rem; ">
+                        <img src="{{ salon.image.url }}" class="rounded-circle rounded-bottom-0 gc" style="border-bottom: none" alt="...">
+                        <div class="card-body  border-top-0 bg-gold  text-center text-bg rounded-bottom-3" >
+                            <h4 class="card-title fw-bold">{{ salon.tittle }}</h4>
+                            <p class="card-text">{{ salon.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</div><!--SalonImages-->
+
+<!--Products7-->
+<div class="container-sm mb-5">
+
+    <div class="text-center text-pink my-5">
+        <h1 class="">Beauty Services</h1>
+        <h5 class="">A space created for your beauty.</h5>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-10">
+            {% for category in categories|slice:":7" %}
+                <a class="btn btn-sm btn-book-categories rounded-pill">{{ category.name }}</a>
+            {% endfor %}
+
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-sm btn-book-categories-2 rounded-pill dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    View More
+                </button>
+                <ul class="dropdown-menu bg-gold">
+                    {% for category in categories %}
+                        <li><a class="dropdown-item text-bg btn-book-categories-3 " href="#">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-2 d-flex d-flex flex-row-reverse">
+            <a class="btn btn-sm btn-book-categories-2 rounded-pill">All Services</a>
+        </div>
+    </div>
+
+    <div class="parent">
+        <div class="div1 position-relative"> <img src="{{ products_info.0.image.url }}" class="img-fluid" alt="Beauty salon background">
+            <button class=" position-absolute btn btn-sm btn-book-categories-2-bgw img-colage-btn bottom-0 end-0">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+        <div class="div2 position-relative"> <img src="{{ products_info.1.image.url }}" class="img-fluid" alt="Beauty salon background">
+            <button class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+        <div class="div3 position-relative"> <img src="{{ products_info.2.image.url }}" class="img-fluid" alt="Beauty salon background">
+            <button class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+        <div class="div4 position-relative"> <img src="{{ products_info.3.image.url }}" class="img-fluid" alt="Beauty salon background">
+            <button class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+        <div class="div5 position-relative"> <img src="{{ products_info.4.image.url }}" class="img-fluid" alt="Beauty salon background">
+            <button class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+        <div class="div6 position-relative"> <img src="{{ products_info.5.image.url }}" class="img-fluid" alt="Beauty salon background">
+            <button class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+        <div class="div7 position-relative"> <img src="{{ products_info.6.image.url }}" class="img-fluid" alt="Beauty salon background">
+            <button class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn">
+                <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<div class="bg-softpink border-section">
+    <div class="container my-5">
+        <div class="row mb-5 g-5">
+            <div class="text-center text-pink mb-5">
+                <h1 class="">My Promise to you</h1>
+                <h5 class="">Pinky Beauty Bar.</h5>
+            </div>
+            <div class="col-lg-4 d-flex flex-column justify-content-center align-items-center ">
+                <div class="text-center size-promise">
+                    <img id="preview-image2" src="{{ home_content.image2.url }}" class=" rounded-circle gc" style="width: 100%; height: 100%; object-fit: cover;" alt="Beauty salon background">
+                </div>
+                <h2 class="">Mission</h2>
+                <p id="preview-home-mission" class="text-center">{{ home_content.home_mission }}</p>
+                <a class="btn btn-book-categories-2-softPink rounded-pill" href="#"> About Me </a>
+
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4 d-flex flex-column justify-content-center align-items-center">
+                <div class="text-center size-promise">
+                    <img id="preview-image3" src="{{ home_content.image3.url }}" class=" rounded-circle gc" style="width: 100%; height: 100%; object-fit: cover;" alt="Beauty salon background">
+                </div>
+                <h2 class="">Vision</h2>
+                <p id="preview-home-vision" class="text-center">{{ home_content.home_vision }}</p>
+                <a class="btn btn-book-categories-2-softPink rounded-pill" href="#"> About Me </a>
+
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4 d-flex flex-column justify-content-center align-items-center">
+                <div class="text-center size-promise">
+                    <img id="preview-image4" src="{{ home_content.image4.url }}" class=" rounded-circle gc" style="width: 100%; height: 100%; object-fit: cover;" alt="Beauty salon background">
+                </div>
+
+                <h2 class="">Attitude</h2>
+                <p id="preview-attitude" class="text-center">{{ home_content.attitude }}</p>
+                <a class="btn btn-book-categories-2-softPink rounded-pill" href="#"> About Me </a>
+
+            </div><!-- /.col-lg-4 -->
+        </div>
+        <h2 class="text-center mt-5 mb-3">
+            Follow Pinky Beauty Bar Social Media
+        </h2>
+        <div class="row d-flex justify-content-evenly">
+            <div class="col-auto">
+                <a href="#" class="whatsapp-icon-home"><i class="bi bi-whatsapp" style="font-size: 2.2rem;"></i></a>
+            </div>
+            <div class="col-auto">
+                <a href="#" class="tiktok-icon-home"><i class="bi bi-tiktok" style="font-size: 2.2rem;"></i></a>
+            </div>
+            <div class="col-auto">
+                <a href="#" class="instagram-icon-home"><i class="bi bi-instagram" style="font-size: 2.2rem;"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row">
+            <div class="col-md-3">
+
+                <div class=" text-pink mb-5 mt-5 ">
+                    <h1 class="text-center">Get in Touch</h1>
+                </div>
+
+                <div class="text-center mb-5 border-bottom">
+                    <h3 class="">Contact</h3>
+                    <p class="">+{{pinky_beauty_bar_info.country_code}} {{pinky_beauty_bar_info.phone_number}}</p>
+                </div>
+                <div class="text-center mb-5">
+                    <h3 class="">Address</h3>
+                    <p class="">{{pinky_beauty_bar_info.address}}</p>
+                </div>
+
+            </div>
+            <div class="col-md-9 ">
+                <div class="mt-5" id="map" style="height: 400px; width: 100%; z-index: 0"></div>
+            </div>
+    </div>
+</div>
+
+<!--Preview Home Page-->
+
+
+
+
+<script>
+$(document).ready(function(){
+    // Configuración para ambos carruseles
+    const commonOptions = {
+        loop: true,
+        nav: true,
+        margin: 30,
+        responsive: {
+            0: { items: 1 },
+            768: { items: 2 },
+            992: { items: 3 }
+        }
+    };
+
+    // Carrusel de imágenes
+    $('.media-carousel').eq(0).owlCarousel({
+        ...commonOptions,
+        autoplay: true,
+        autoplayTimeout: 3000
+    });
+
+    // Carrusel de videos
+    $('.media-carousel').eq(1).owlCarousel({
+        ...commonOptions,
+        autoplay: false,
+        onInitialized: function(event) {
+            // Pausar otros videos al navegar
+            event.page.index = 0;
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => video.pause());
+        }
+    });
+
+    // Control de reproducción de videos
+    $('video').on('play', function() {
+        $(this).closest('.owl-carousel').trigger('stop.owl.autoplay');
+    });
+});
+</script>
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Configuración de previews para imágenes
+        const imageFields = [
+            { inputName: 'banner', previewId: 'preview-banner' },
+            { inputName: 'image1', previewId: 'preview-image1' },
+            { inputName: 'image2', previewId: 'preview-image2' },
+            { inputName: 'image3', previewId: 'preview-image2' },
+            { inputName: 'image4', previewId: 'preview-image2' }
+
+        ];
+
+        imageFields.forEach((field) => {
+            const input = document.querySelector(`input[name="${field.inputName}"]`);
+            const preview = document.getElementById(field.previewId);
+            const clearCheckbox = document.querySelector(`input[name="${field.inputName}-clear"]`);
+
+            if (input && preview) {
+                // Manejar selección de archivo
+                input.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => preview.src = e.target.result;
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
+
+        // Preview para campos de texto (description, mission, vision)
+        const textFields = [
+            { inputName: 'slogan', previewId: 'preview-slogan' },
+            { inputName: 'who_am_i', previewId: 'preview-who-am-i' },
+            { inputName: 'skills', previewId: 'preview-home-vision' },
+            { inputName: 'home_mission', previewId: 'preview-skills' },
+            { inputName: 'home_vision', previewId: 'preview-home-mission' },
+            { inputName: 'attitude', previewId: 'preview-attitude' },
+
+        ];
+
+        textFields.forEach((field) => {
+            const input = document.querySelector(`[name="${field.inputName}"]`);
+            const previewElement = document.getElementById(field.previewId);
+
+            if (input && previewElement) {
+                input.addEventListener('input', function(e) {
+                    previewElement.textContent = e.target.value;
+                });
+
+                // Inicializar con el valor actual
+                previewElement.textContent = input.value;
+            }
+        });
+    });
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base_dashboard.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Crear Categoría</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+        </div>
+        <button type="submit" class="btn btn-primary">Crear</button>
+        <a href="{% url 'list_category' %}" class="btn btn-secondary">Volver</a>
+    </form>
+</div>
+{% endblock %}

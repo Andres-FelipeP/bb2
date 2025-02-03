@@ -1,0 +1,35 @@
+{% extends 'base_dashboard.html' %}
+{% block content %}
+
+<div class="container mt-5 pt-5">
+    <h1 class="text-center mb-4">Category: {{ category.name }} Products</h1>
+    <div class="row d-flex justify-content-center align-items-center">
+
+        <div class="row pb-5 d-flex flex-column align-items-center gap-3">
+            <a href="{% url 'create_product' %}" class="btn btn-book-categories-2 w-50 mx-auto">Create Product</a>
+        </div>
+
+        {% for product in products %}
+        <div class="col-md-4">
+            <div class="category-card text-center" >
+                <h3>{{ product.tittle }}</h3>
+                <h6>{{ product.price }}$</h6>
+                <a class="btn-book-categories-2 btn mb-2" href="{% url 'edit_product' product.pk %}">Edit</a>
+                <a href="{% url 'delete_product' product.id %}" class="btn btn-outline-danger">Eliminar</a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-md-4">
+            <div class="category-card text-center" >
+                <h3>No Products on Category</h3>
+                <a href="{% url 'create_product' %}" class="btn btn-book-categories w-50 mx-auto">Create Product</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+        <a href="{% url 'list_category' %}" class="btn btn-book-categories mt-3">Return Categories</a>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base_dashboard.html' %} {% load static %}
+{% block content %}
+
+
+
+
+<div class="container mt-5 pt-5">
+    <h1 class="text-center mb-4">Pinky Beauty Bar Sections</h1>
+    <div class="row d-flex justify-content-center align-items-center">
+
+        <div class="col-md-4">
+            <div class="category-card text-center" >
+                <h3>HomePage</h3>
+                <a class="btn btn-book-categories-2" href="{% url 'edit_home' %}">Edit</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="category-card text-center">
+                <h3>About Me</h3>
+                <a class="btn btn-book-categories-2" href="{% url 'edit_about_me' %}">Edit</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="category-card text-center   ">
+                <h3>Services</h3>
+                <a class="btn btn-book-categories-2" href="{% url 'edit_services' %}">Edit</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="category-card text-center ">
+                <h3>Products Service</h3>
+                <a class="btn btn-book-categories-2" href="{% url 'list_category' %}">Edit</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="category-card text-center   ">
+                <h3>Contact Me</h3>
+                <a class="btn btn-book-categories-2" href="{% url 'edit_my_profile' %}">Edit</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="category-card text-center   ">
+                <h3>Add beauty Salon Images</h3>
+                <a class="btn btn-book-categories-2" href="{% url 'edit_salon' %}">Edit</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

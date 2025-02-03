@@ -1,0 +1,80 @@
+body{
+    background-color: #F7F1E8;
+}
+
+.btn-book {
+    color: white;
+    background-color: #EECECD;
+}
+.btn-book:hover {
+    background-color: #FF01DD;
+    color: white;
+}
+.whatsapp-icon {
+    color: #EECECD;
+}
+.whatsapp-icon:hover {
+    color: #FF01DD;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #FF01DD;
+}
+
+.calendarIcon{
+    color: #EECECD;
+}
+.calendarIcon:hover{
+    color: #FF01DD;
+}
+
+/* Hero Section Styles */
+.hero {
+  position: relative;
+  height: 70vh; /* Ajusta según el diseño */
+  background-image: url('/pinky_beauty_bar_project/staticfiles/'); /* Reemplaza con la ruta de tu imagen */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff; /* Color de texto blanco */
+  font-family: 'Arial', sans-serif; /* Ajusta según tu fuente */
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Oscurece un poco el fondo */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.hero h2 {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.hero p {
+  font-size: 1rem;
+  margin-top: 1rem;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+
+

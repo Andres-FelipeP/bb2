@@ -1,0 +1,63 @@
+{% extends 'base_dashboard.html' %} {% load static %}
+{% block content %}
+
+<div class="container my-5 pt-5 ">
+    <h2 class="text-center p-5">Beauty Salon Photo Gallery</h2>
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+            <div class="container-fluid  ">
+        <!-- Galería de Fotos -->
+                <div class="row justify-content-center ">
+                    <div class="text-center mb-5">
+                            <a href="{% url 'add_salon_images' %}" class="btn btn-book-categories-2">Add Image</a>
+                        </div>
+                    <div class="col-12">
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                            {% for photo in salon_images %}
+                            <div class="col">
+                                <div class="card h-100 shadow bg-danger bg-opacity-10">
+                                    {% if photo.image %}
+                                        <img id="preview-img" src="{{ photo.image.url }}" class="card-img-top img-fluid" alt="Salon image" style="height: 200px; object-fit: cover;">
+                                    {% else %}
+                                        <img src="{% static 'default/image_default.png' %}" class="card-img-top img-fluid" alt="Default Image" style="height: 200px; object-fit: cover;">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <form method="POST" action="{% url 'edit_salon_images' photo.id %}" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="card-body ">
+                                                <label class="form-label text-secondary">Image File</label>
+                                                <input type="file" name="image" class="form-control mb-2">
+
+                                                <label class="form-label text-secondary">Photo tittle</label>
+                                                <input type="text" name="tittle" value="{{ photo.tittle }}" class="form-control mb-2">
+
+                                                <label class="form-label text-secondary">Photo description</label>
+                                                <input type="text" name="description" value="{{ photo.description }}" class="form-control ">
+                                            </div>
+
+
+                                            <div class="d-flex justify-content-center gap-2 ">
+                                                <button type="submit" class="btn btn-book-categories-2 btn-sm">Update</button>
+                                                <a href="{% url 'delete_salon_images' photo.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+</script>
+
+
+
+{% endblock %}

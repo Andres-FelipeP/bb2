@@ -1,0 +1,252 @@
+{% extends 'base_public.html' %}{% load static %}
+{% block content %}
+
+<section class="hero">
+    <img src="{{product.banner.url}}" alt="Beauty salon background" class="hero-bg">
+    <div class="hero-content">
+        <h1>{{product.tittle}}</h1>
+        <h4>{{product.subtittle}}</h4>
+    </div>
+</section>
+
+
+<div class="container">
+    <div class="row my-5">
+        <div class="col-md-6 ">
+            <h1 class="text-pink">The best aesthetic service in town</h1>
+            <p>
+                {{product.subtittle}}
+            </p>
+            <div class="row mb-3 d-flex justify-content-center text-center">
+                <div class="col-6 border-end pb-2 border-bottom">
+                    <span>Time: {{product.duration}} min</span>
+                </div>
+                <div class="col-6 border-bottom">
+                    <span>Price: {{product.price}} $</span>
+                </div>
+                <div class="col-8 mt-3">
+                    <button class="btn btn-book-categories rounded-pill">Book an Appointment</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="{{product.image1.url}}" class="img-fluid rounded-5 gc" alt="img-1">
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-6">
+                    <img src="{{product.image2.url}}" class="img-fluid rounded-5 gc img-1-2"  alt="img-2">
+                </div>
+                <div class="col-6">
+                    <img src="{{product.image3.url}}" class="img-fluid rounded-5 gc img-1-2"  alt="img-3">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-center justify-content-center">
+            <div class="container">
+                <h1 class="text-pink mt-5 text-center mb-3">Benefits</h1>
+
+                <ul class="list-group list-group-flush mb-5">
+                    {% for benefit in benefits %}
+                    <li class="list-group-item d-flex align-items-center position-relative gc" >
+                        <i class="bi bi-flower1 me-5 fs-4 gold-color position-absolute start-0"></i>
+                        <div class="w-100 text-center mx-4">
+                            <h5 class="mb-1">{{ benefit.tittle }}</h5>
+                            <p class="mb-0 text-muted">{{ benefit.description }}</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="bg-softpink border-section my-5">
+    <div class="container">
+        <h1 class="text-pink mt-5 text-center mb-3">Process</h1>
+        <div class="col-12 d-flex align-items-center justify-content-center">
+
+            <ul class="list-group list-group-flush mb-5">
+                {% for proc in process %}
+                <li class="list-group-item d-flex align-items-center position-relative gc" >
+                    <i class="bi bi-flower1 me-3 fs-4 gold-color position-absolute start-0"></i>
+                    <div class="w-100 text-center mx-4">
+                        <h5 class="mb-1">{{ proc.tittle }}</h5>
+                        <p class="mb-0 text-muted">{{ proc.description }}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row align-items-end justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-pink text-center mb-3">Tips</h1>
+
+        </div>
+        <div class="col-md-6">
+            <h1 class="text-pink text-center mb-3">The Most common lorem Myths, Busted!</h1>
+        </div>
+    </div>
+    <div class="row align-items-end justify-content-center">
+        <div class="col-md-6 col-12 d-flex flex-column ">
+            <ul class="list-group list-group-flush mb-5">
+                {% for recommendation in recommendations %}
+                <li class="list-group-item d-flex align-items-center position-relative gc" >
+                    <i class="bi bi-flower1 me-3 fs-4 gold-color position-absolute start-0"></i>
+                    <div class="w-100 text-center mx-4">
+                        <h5 class="mb-1">{{ recommendation.tittle }}</h5>
+                        <p class="mb-0 text-muted">{{ recommendation.description }}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+        <div class="col-md-6 col-12 d-flex flex-column ">
+            <ul class="list-group list-group-flush mb-5">
+                {% for myth in myths %}
+                <li class="list-group-item d-flex align-items-center position-relative gc" >
+                    <i class="bi bi-flower1 me-3 fs-4 gold-color position-absolute start-0"></i>
+                    <div class="w-100 text-center mx-4">
+                        <h5 class="mb-1">{{ myth.tittle }}</h5>
+                        <p class="mb-0 text-muted">{{ myth.description }}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+<section class="multimedia-section">
+    <div class="container">
+        <h1 class="text-pink text-center mb-3">Gallery</h1>
+            <h5>Photos</h5>
+
+        <div class="owl-carousel media-carousel">
+            <!-- Item 1 -->
+            {% for photo in photo_gallery %}
+
+            <div class="item">
+                <div class="img-card">
+                    <img src="{{ photo.image.url }}" alt="Imagen 1">
+                </div>
+            </div>
+
+            {% endfor %}
+            <!-- Agregar más imágenes -->
+        </div>
+    </div>
+</section>
+
+
+<section class="multimedia-section ">
+    <div class="container">
+            <h5>Videos</h5>
+
+        <div class="owl-carousel media-carousel">
+            {% for video in video_gallery %}
+
+                {% if video.video_file %}
+                    <!-- Video 1 - YouTube -->
+                    <div class="item">
+                        <div class="video-container">
+                            <video class="video-iframe" controls >
+                                <source src="{{video.video_file.url}}" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                {% elif video.video_youtube_url %}
+                    <!-- Video 2 - HTML5 -->
+                    <div class="item">
+                        <div class="video-container">
+                            <iframe class="video-iframe"
+                                    src="{{video.video_youtube_url}}"
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+{% load i18n %}
+
+
+<div class="container text-center">
+    <a class="btn btn-book-categories-2-bgw btn-lg" href="{{ social_media.instagram }}">
+        Book An Appointment
+    </a>
+    <a href="sms:+573052420142">Enviar mensaje</a>
+
+</div>
+
+
+
+
+<script>
+$(document).ready(function(){
+    // Configuración para ambos carruseles
+    const commonOptions = {
+        loop: true,
+        nav: true,
+        margin: 30,
+        responsive: {
+            0: { items: 1 },
+            768: { items: 2 },
+            992: { items: 3 }
+        }
+    };
+
+    // Carrusel de imágenes
+    $('.media-carousel').eq(0).owlCarousel({
+        ...commonOptions,
+        autoplay: true,
+        autoplayTimeout: 3000
+    });
+
+    // Carrusel de videos
+    $('.media-carousel').eq(1).owlCarousel({
+        ...commonOptions,
+        autoplay: false,
+        onInitialized: function(event) {
+            // Pausar otros videos al navegar
+            event.page.index = 0;
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => video.pause());
+        }
+    });
+
+    // Control de reproducción de videos
+    $('video').on('play', function() {
+        $(this).closest('.owl-carousel').trigger('stop.owl.autoplay');
+    });
+});
+</script>
+
+
+
+{% endblock %}

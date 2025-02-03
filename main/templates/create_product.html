@@ -1,0 +1,101 @@
+{% extends 'base_dashboard.html' %}
+{% block content %}
+<div class="container pt-5 mt-5">
+    <h2 class="text-center p-5">Create a New Product</h2>
+    <div class="card shadow-lg p-4 rounded-4">
+        <div class="card-body p-5">
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="row">
+                    <!-- Título -->
+                    <div class="col-md-6">
+                        <label for="{{ form.tittle.id_for_label }}" class="form-label text-secondary">Tittle</label>
+                        {{ form.tittle }}
+                    </div>
+
+                    <!-- Subtítulo -->
+                    <div class="col-md-6">
+                        <label for="{{ form.subtittle.id_for_label }}" class="form-label text-secondary">Subtittle</label>
+                        {{ form.subtittle }}
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <!-- Descripción -->
+                    <div class="col-md-12">
+                        <label for="{{ form.description.id_for_label }}" class="form-label text-secondary">Description</label>
+                        {{ form.description }}
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <!-- Descripción -->
+                    <div class="col-md-6">
+                        <label for="{{ form.short_subtittle.id_for_label }}" class="form-label text-secondary">Short description (it appears on Catalog Page)</label>
+                        {{ form.short_subtittle }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="{{ form.short_subtittle.id_for_label }}" class="form-label text-secondary">Select the associated categories</label>
+                        {{ form.categories }}
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <!-- Duración -->
+                    <div class="col-md-6">
+                        <label for="{{ form.duration.id_for_label }}" class="form-label text-secondary">Duration (Minutes)</label>
+                        {{ form.duration }}
+                    </div>
+
+                    <!-- Precio -->
+                    <div class="col-md-6">
+                        <label for="{{ form.price.id_for_label }}" class="form-label text-secondary">Price</label>
+                        {{ form.price }}
+                    </div>
+                </div>
+
+                <div class="my-3">
+                                                                                                <label class="form-label text-secondary">Banner Image</label>
+
+                    <div class="card border-dashed">
+
+                        <div class="card-body text-center py-4 bg-danger bg-opacity-10">
+                            <div class="mb-3">
+                                <i class="bi bi-image fs-1 text-muted"></i>
+                            </div>
+
+                            {{ form.banner }}
+                            <small class="text-muted d-block mt-2">Recommended banner size: 1500x500 px</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <!-- Imágenes -->
+                    <div class="col-md-4">
+                        <label for="{{ form.image1.id_for_label }}" class="form-label text-secondary">Image 1</label>
+                        {{ form.image1 }}
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="{{ form.image2.id_for_label }}" class="form-label text-secondary">Image 2</label>
+                        {{ form.image2 }}
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="{{ form.image3.id_for_label }}" class="form-label text-secondary">Image 3</label>
+                        {{ form.image3 }}
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-book-categories-2 px-4 py-2">Save Product</button>
+                    <a href="{% url 'list_category' %}" class="btn btn-book-categories px-4 py-2">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

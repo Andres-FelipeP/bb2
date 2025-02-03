@@ -1,0 +1,65 @@
+{% extends 'base_public.html' %}{% load static %}
+{% block content %}
+
+<section class="hero">
+    <img src="{{ service.banner.url }}" alt="Beauty salon background" class="hero-bg">
+    <div class="hero-content">
+        <h1>Services</h1>
+        <p>Pinky Beauty Bar</p>
+    </div>
+</section>
+
+<div class="container ">
+    <div class="text-center mt-5">
+        <h1 class="text-pink ">Where Beauty Begins</h1>
+        <p class="">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sagittis nisi neque.
+        </p>
+    </div>
+</div>
+
+<form method="GET" action="{% url 'Catalog' %}">
+    <label for="category">Filtrar por categoría:</label>
+    <select name="category" id="category" onchange="this.form.submit()">
+        <option value="">Todas las categorías</option>
+        {% for category in categories %}
+            <option value="{{ category.id }}" {% if category.id|stringformat:"s" == selected_category %}selected{% endif %}>
+                {{ category.name }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+
+
+<div class="container py-5">
+    <div class="row g-4 d-flex justify-content-center">
+        {% for product in products %}
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card text-center card-cat">
+                <img src="{{ product.image1.url }}" class="card-img-top p-2" alt="Facial Treatment">
+                <div class="card-body">
+                    <h5 class="card-title">Where Beauty Begins</h5>
+                    <p class="card-text border-bottom p-1">{{ product.short_subtittle }}</p>
+                    <div class="row mb-3">
+                        <div class="col-6 border-end">
+                            <span>Time: {{ product.duration }} min</span>
+                        </div>
+                        <div class="col-6">
+                            <span>Price: {{ product.price }}$</span>
+                        </div>
+                    </div>
+                    <a class="btn btn-book-categories rounded-pill" href="{% url 'Product' product.id %}">Learn More</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p>No products.</p>
+
+        {% endfor %}
+    </div>
+  </div>
+
+
+
+
+{% endblock %}

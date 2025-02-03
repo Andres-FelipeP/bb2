@@ -1,0 +1,17 @@
+{% extends 'base_dashboard.html' %} {% load static %}
+{% block content %}
+<div class="container my-5 pt-5 ">
+    <h2 class="text-center p-5">Add Recommendation</h2>
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-book-categories-2">Save</button>
+            <a href="{% url 'edit_salon' %}" class="btn btn-book-categories">Cancel</a>
+        </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

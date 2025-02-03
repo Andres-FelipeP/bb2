@@ -1,0 +1,140 @@
+{% extends 'base_public.html' %}{% load static %}
+{% block content %}
+
+<section class="hero">
+    <img src="{{ about_me.banner.url }}" alt="Beauty salon background" class="hero-bg">
+    <div class="hero-content">
+        <h1 >About Me</h1>
+        <p>Juliana lozano</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <p class="">Pinky Beauty Bar</p>
+            <h1 class="text-pink border-bottom mb-4" >Hi, I'm Juliana Lozano</h1>
+                {{ about_me.description }}
+            </div>
+
+        <div class="col-md-4">
+            <div class="d-flex justify-content-center ">
+                <div class="image-container">
+                    <img src="{{ about_me.image1.url }}" alt="About Me Image 1" style="width: 250px; height: 400px; object-fit: cover;border-radius: 40%;  border: 5px solid #A99B6F; "  >
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 d-flex justify-content-center align-items-center m-0 p-0">
+            <ul class="list-unstyled">
+                {% for value in values %}
+                <li class="d-flex align-items-center mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#EECECD"><path d="M480-80q-72-8-143.5-41.5t-128.5-93q-57-59.5-92.5-147T80-564.98V-603h38q53 0 113 20.5T337-530q8-90 48-185.5T480-879q55 68 95 163.5T623-530q46-30 106-51.5T842-603h38v38.02Q880-449 844.5-361.5 809-274 752-214.5t-128.5 93Q552-88 480-80Zm8-61q-11-186-107.39-282.18Q284.21-519.37 141-542q13 193 112.5 288T488-141Zm-9-245q14-26 38.5-56t47.5-50q5-68-20-138t-65-145q-40 75-65 145t-20 138q23 20 46.5 50t37.5 56Zm69 228q47-17 93.5-45t84-73q37.5-45 63-110.5T819-542q-106 17-187 75.5T513-322q12 38 21 76.5t14 87.5Zm-69-228Zm69 228Zm-60 17Zm25-181ZM480-80Z"/></svg>
+                    <span><span>{{ value.tittle }}-</span>{{ value.description }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container ">
+    <div class="text-center mt-5">
+        <h1 class="text-pink ">Certificates</h1>
+        <p class="">
+            At Pinky Beauty Bar, we ensure the highest quality standards in our services. Our certifications validate our expertise and professionalism in aesthetics, skincare, and wellness.
+        </p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 text-center align-items-center">
+        {% for certificate in certificates %}
+            <div class="col d-flex flex-column align-items-center">
+                <i class="bi bi-award-fill certificate-icon  mb-3"></i>
+                <h3 class="mb-1">{{ certificate.tittle }}</h3>
+                <p class="text-center mb-0">{{ certificate.description }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<section class="circulo-carousel">
+
+    <div class="text-center mt-5 mb-5">
+        <h1 class="text-pink ">Services</h1>
+        <p class="">
+            At Pinky Beauty Bar, I have a wide variety of services, all with a high quality of certified service.
+        </p>
+    </div>
+
+    <div class="owl-carousel">
+        {% for product in products_info %}
+        <div class="circulo-item">
+            <div class="circulo-imagen">
+                <img src="{{ product.image1.url }}" alt="productImg">
+            </div>
+            <div class="circulo-texto">
+                <h5 class="mb-1">{{ product.tittle }}</h5>
+                <p class="text-muted mb-1">{{ product.subtittle }}</p>
+                <a class="btn btn-sm btn-book-categories rounded-pill" href="#">Learn More</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+<div class="bg-softpink border-section">
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-md-6 ">
+                <h1 class="text-pink">The best aesthetic service in town</h1>
+                <p class="">
+                    {{ about_me.competence }}
+                </p>
+                <div class="row">
+                    <div class="col-6">
+                        <h1 class="">Mission</h1>
+                        <p>{{ about_me.about_me_mission }}</p>
+                    </div>
+                    <div class="col-6">
+                        <h1 class="">Vision</h1>
+                        <p>{{ about_me.about_me_vision }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="{{ about_me.image2.url }}" class="img-fluid rounded-5 gc" alt="img">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="text-center mt-5 ">
+    <h1 class="text-pink">Thank You!</h1>
+    <p class="">
+        See uou soon at Pinky Beauty Bar!
+    </p>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        center: true,
+        margin: 30,
+        nav: true,
+        responsive: {
+            0: { items: 1 },
+            576: { items: 2 },
+            768: { items: 3 },
+            992: { items: 4 }
+        }
+    });
+});
+</script>
+
+{% endblock %}
