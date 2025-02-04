@@ -67,13 +67,7 @@ def edit_home(request):
 
     social_media, created = SocialMedia.objects.get_or_create(
         defaults={
-            'facebook': 'https://facebook.com/',
-            'linkedin': 'https://linkedin.com/',
             'instagram': 'https://www.instagram.com/pinky.beauty.bar/',
-            'twitter': 'https://x.com/',
-            'youtube': 'https://www.youtube.com/',
-            'tiktok': 'https://www.tiktok.com/',
-            'wpp': 'https://www.whatsapp.com/',
         }
     )
     pinky_beauty_bar_info, created = PinkyBeautyBarInfo.objects.get_or_create(
@@ -185,6 +179,8 @@ def delete_category(request, category_id):
 
 @login_required
 def create_product(request):
+    categories = Category.objects.all()
+
     if request.method == "POST":
         form = ProductsForm(request.POST, request.FILES)
         if form.is_valid():
@@ -192,7 +188,7 @@ def create_product(request):
             return redirect('list_category')  # Ajusta esta redirección a donde desees
     else:
         form = ProductsForm()
-    return render(request, 'create_product.html', {'form': form})
+    return render(request, 'create_product.html', {'form': form, 'categories': categories})
 
 
 @login_required

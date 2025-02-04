@@ -36,9 +36,13 @@
                         <label for="{{ form.short_subtittle.id_for_label }}" class="form-label text-secondary">Short description (it appears on Catalog Page)</label>
                         {{ form.short_subtittle }}
                     </div>
-                    <div class="col-md-6">
-                        <label for="{{ form.short_subtittle.id_for_label }}" class="form-label text-secondary">Select the associated categories</label>
-                        {{ form.categories }}
+                    <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
+                        {% if categories %}
+                            <label for="{{ form.short_subtittle.id_for_label }}" class="form-label text-secondary">Select the associated categories</label>
+                            {{ form.categories }}
+                        {% else %}
+                            <a href="{% url 'create_category' %}" class="btn btn-book-categories w-50">Create Category</a>
+                        {% endif %}
                     </div>
                 </div>
 

@@ -8,3 +8,6 @@ __pycache__/
 
 # Archivos de entorno (variables sensibles)
 .env
+
+**/migrations/*.py
+!**/migrations/__init__.py

@@ -65,6 +65,10 @@ html, body {
 ;
 }
 
+.bg-pink{
+    background-color: var(--color-pink);
+}
+
 .soft-pink-color {
     color: var(--color-soft-pink);
 }
@@ -232,6 +236,11 @@ border-bottom: 9px double var(--color-gold);
 
 }
 
+.gold-border-thin{
+    border: 1px double var(--color-gold);
+
+}
+
 .gc{
     border: 5px solid var(--color-gold) ;
 }
@@ -315,7 +324,7 @@ border-bottom: 9px double var(--color-gold);
 
 .card-cat{
         background-color: transparent;
-        border: none;
+
     }
     .card-cat img {
         background-color: var(--color-soft-pink);
@@ -516,3 +525,4 @@ border-bottom: 9px double var(--color-gold);
         font-size: 14px;
     }
 }
+

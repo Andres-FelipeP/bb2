@@ -195,9 +195,11 @@
     </div>
 
     <div class="row mb-3">
-        <div class="col-md-10">
-            {% for category in categories|slice:":7" %}
-                <a class="btn btn-sm btn-book-categories rounded-pill">{{ category.name }}</a>
+        <div class="col-10 d-flex">
+            {% for category in categories|slice:":5" %}
+                <a class="btn btn-sm btn-book-categories rounded-pill">
+                    {{ category.name }}
+                </a>
             {% endfor %}
 
             <div class="btn-group" role="group">
@@ -211,8 +213,8 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-2 d-flex d-flex flex-row-reverse">
-            <a class="btn btn-sm btn-book-categories-2 rounded-pill">All Services</a>
+        <div class="col-2 d-flex flex-row-reverse">
+            <a class="btn btn-sm btn-book-categories-2 rounded-pill">All</a>
         </div>
     </div>
 
@@ -297,13 +299,10 @@
         </h2>
         <div class="row d-flex justify-content-evenly">
             <div class="col-auto">
-                <a href="#" class="whatsapp-icon-home"><i class="bi bi-whatsapp" style="font-size: 2.2rem;"></i></a>
-            </div>
-            <div class="col-auto">
-                <a href="#" class="tiktok-icon-home"><i class="bi bi-tiktok" style="font-size: 2.2rem;"></i></a>
-            </div>
-            <div class="col-auto">
                 <a href="#" class="instagram-icon-home"><i class="bi bi-instagram" style="font-size: 2.2rem;"></i></a>
+            </div>
+            <div class="col-auto">
+                <a href="#" class="instagram-icon-home"><i class="bbi bi-chat-heart" style="font-size: 2.2rem;"></i></a>
             </div>
         </div>
     </div>
