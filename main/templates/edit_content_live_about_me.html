@@ -366,27 +366,27 @@
         });
 
 
-    const handleDynamicFields = (prefix) => {
-            document.querySelectorAll(`input[name^="${prefix}_tittle_"], textarea[name^="${prefix}_description_"]`).forEach(input => {
-                const fieldType = input.name.includes('tittle') ? 'tittle' : 'description';
-                const itemId = input.name.split('_').pop();
-                const previewId = `preview-${prefix}-${fieldType}-${itemId}`;
-                const previewElement = document.getElementById(previewId);
+        const handleDynamicFields = (prefix) => {
+                document.querySelectorAll(`input[name^="${prefix}_tittle_"], textarea[name^="${prefix}_description_"]`).forEach(input => {
+                    const fieldType = input.name.includes('tittle') ? 'tittle' : 'description';
+                    const itemId = input.name.split('_').pop();
+                    const previewId = `preview-${prefix}-${fieldType}-${itemId}`;
+                    const previewElement = document.getElementById(previewId);
 
-                if (previewElement) {
-                    // Actualizar preview al escribir
-                    input.addEventListener('input', function(e) {
-                        previewElement.textContent = e.target.value;
-                    });
+                    if (previewElement) {
+                        // Actualizar preview al escribir
+                        input.addEventListener('input', function(e) {
+                            previewElement.textContent = e.target.value;
+                        });
 
-                    // Inicializar con valor actual
-                    previewElement.textContent = input.value;
-                }
-            });
-        };
+                        // Inicializar con valor actual
+                        previewElement.textContent = input.value;
+                    }
+                });
+            };
 
-        // Manejar ambos tipos de campos
-        ['certificates', 'values'].forEach(prefix => handleDynamicFields(prefix));
+            // Manejar ambos tipos de campos
+            ['certificates', 'values'].forEach(prefix => handleDynamicFields(prefix));
 
 
     });

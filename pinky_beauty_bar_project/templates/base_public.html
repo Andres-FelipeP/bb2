@@ -66,24 +66,24 @@
                 </ul>
             </div>
 
-             <a class="navbar-brand position-absolute top-100 start-50 translate-middle " style="z-index: 2" href="#">
+             <a class="navbar-brand position-absolute top-100 start-50 translate-middle " style="z-index: 2" href="{% url 'HomePage' %}">
                 <img src="{%static 'LogoSquare.png'%}" alt="Logo" width="100" class="rounded-circle border border-2">
             </a>
 
             <div class="d-flex align-items-center">
-                <button class="btn btn-book me-2 d-none d-md-block rounded-pill">Book an Appointment</button>
+                <a class="btn btn-book me-2 d-none d-md-block rounded-pill" href="{{social_media.instagram}}">Book an Appointment</a>
 
                 <button class="btn me-2 d-md-none calendarIcon">
                 <i class="bi bi-calendar2-week-fill" style="font-size: 2.2rem;"></i>
 
                 </button>
-                <a href="https://wa.me/+573052420142" class="whatsapp-icon"><i class="bi bi-whatsapp" style="font-size: 2.2rem;"></i></a>
+                <a href="sms:+573052420142" class="whatsapp-icon"><i class="bi bi-chat-heart" style="font-size: 2.2rem;"></i></a>
 
             </div>
         </div>
     </nav>
 
-    <div class="">
+    <div class="main-content">
         {% block content %}
         {% endblock content %}
     </div>

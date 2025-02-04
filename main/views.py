@@ -63,7 +63,7 @@ def edit_home(request):
         }
     )
     salon_images = PinkyBeautyBarSalonImages.objects.all()
-    products_info = PhotoGallery.objects.all().order_by('order')[:7]
+    products_info = Products.objects.all()[:7]
 
     social_media, created = SocialMedia.objects.get_or_create(
         defaults={
@@ -97,6 +97,8 @@ def edit_services(request):
             'banner': "default/img.png"
         })
 
+    categories = Category.objects.all()
+
     products = Products.objects.all()
 
     if request.method == 'POST':
@@ -107,7 +109,7 @@ def edit_services(request):
     else:
         service_form = ServicesPageForm(instance=service)
 
-    return render(request, 'edit_content_live_services.html', {'service': service, 'service_form': service_form, 'products': products})
+    return render(request, 'edit_content_live_services.html', {'categories': categories, 'service': service, 'service_form': service_form, 'products': products})
 
 
 @login_required
@@ -211,13 +213,14 @@ def edit_product(request, pk):
 
     photo_gallery = PhotoGallery.objects.filter(product=product).order_by('order')
     video_gallery = VideoGallery.objects.filter(product=product).order_by('order')
-
+    print(photo_gallery)
+    print(video_gallery)
     if request.method == "POST":
         product_form = ProductsForm(request.POST, request.FILES, instance=product)
 
         if product_form.is_valid():
             product_form.save()
-            return redirect('list_category')
+            return redirect('edit_product', product.id)
 
 
     else:

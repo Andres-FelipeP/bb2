@@ -42,6 +42,8 @@
     <h2 class="text-light">Preview</h2>
     <p class="text-light">Observe in real time how customers will view your website</p>
 </div>
+
+
 <section class="hero">
     <img id="preview-service-banner" src="{{ service.banner.url }}" alt="Beauty salon background" class="hero-bg">
     <div class="hero-content">
@@ -59,27 +61,49 @@
     </div>
 </div>
 
-<div class="container py-5">
+<div class="row justify-content-center mb-5">
+    <div class="col-md-4  mt-4">
+        <div class="card shadow-sm bg-transparent gold-border-double p-3">
+            <form method="GET" action="#">
+                <h5 class="text-center"><label for="category" class="form-label">Filter by Category</label></h5>
+                <select name="category" id="category" class="form-select bg-transparent" onchange="this.form.submit()">
+                    <option class="bg-transparent" value="">All Categories</option>
+                    {% for category in categories %}
+                        <option class="bg-transparent" value="{{ category.id }}" {% if category.id|slugify == selected_category %} selected{% endif %}>
+                            {{ category.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-md py-5 gold-border-double rounded">
     <div class="row g-4 d-flex justify-content-center">
         {% for product in products %}
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="card text-center card-cat">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="card card-cat text-center shadow p-2 gold-border-thin ">
                 <img src="{{ product.image1.url }}" class="card-img-top p-2" alt="Facial Treatment">
                 <div class="card-body">
                     <h5 class="card-title">Where Beauty Begins</h5>
-                    <p class="card-text border-bottom p-1">{{ product.short_subtittle }}</p>
+                    <p class="card-text border-start-0 border-top-0 border-end-0 gold-border-thin p-1">{{ product.short_subtittle }}</p>
                     <div class="row mb-3">
-                        <div class="col-6 border-end">
+                        <div class="col-6 border-start-0 border-top-0 border-bottom-0 gold-border-thin">
                             <span>Time: {{ product.duration }} min</span>
                         </div>
                         <div class="col-6">
                             <span>Price: {{ product.price }}$</span>
                         </div>
                     </div>
-                    <a class="btn btn-book-categories rounded-pill" href="#">Book an Appointment</a>
+                    <a class="btn btn-book-categories rounded-pill" href="#">Learn More</a>
                 </div>
             </div>
         </div>
+        {% empty %}
+            <p>No products.</p>
+
         {% endfor %}
     </div>
   </div>

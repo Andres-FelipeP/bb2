@@ -7,16 +7,14 @@ from django.shortcuts import get_object_or_404
 def home(request):
     home_content = HomeContent.objects.first()
     salon_images = PinkyBeautyBarSalonImages.objects.all()
-    products_info = PhotoGallery.objects.all().order_by('order')[:7]
+
+    products_info = Products.objects.all()[:7]
+
     social_media = SocialMedia.objects.first()
     pinky_beauty_bar_info = PinkyBeautyBarInfo.objects.first()
     categories = Category.objects.all()
 
-    admin = "AdminUser.objects.get(username="")"
-    admin_wpp = "f'{admin.country_code}{admin.phone_number}'"
-    admin_address = "admin.address"
-
-    return render(request, 'homePage.html', {'home_content': home_content,'categories':categories, 'salon_images': salon_images, 'products_info': products_info, 'admin_wpp': admin_wpp, 'social_media':social_media, 'admin_address': admin_address, 'pinky_beauty_bar_info': pinky_beauty_bar_info})
+    return render(request, 'homePage.html', {'home_content': home_content,'categories':categories,'social_media':social_media, 'salon_images': salon_images, 'products_info': products_info, 'pinky_beauty_bar_info': pinky_beauty_bar_info})
 
 def contactMe(request):
     return render(request, 'contactMe.html')

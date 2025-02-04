@@ -111,5 +111,46 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
+
+<script>
+$(document).ready(function(){
+    // Configuración para ambos carruseles
+    const commonOptions = {
+        loop: true,
+        nav: true,
+        margin: 30,
+        responsive: {
+            0: { items: 1 },
+            768: { items: 2 },
+            992: { items: 3 }
+        }
+    };
+
+    // Carrusel de imágenes
+    $('.media-carousel').eq(0).owlCarousel({
+        ...commonOptions,
+        autoplay: true,
+        autoplayTimeout: 3000
+    });
+
+    // Carrusel de videos
+    $('.media-carousel').eq(1).owlCarousel({
+        ...commonOptions,
+        autoplay: false,
+        onInitialized: function(event) {
+            // Pausar otros videos al navegar
+            event.page.index = 0;
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => video.pause());
+        }
+    });
+
+    // Control de reproducción de videos
+    $('video').on('play', function() {
+        $(this).closest('.owl-carousel').trigger('stop.owl.autoplay');
+    });
+});
+</script>
+
 </body>
 </html>

@@ -1,5 +1,6 @@
 {% extends 'base_public.html' %}{% load static %}
 {% block content %}
+{% load i18n %}
 
 <section class="hero">
     <img src="{{product.banner.url}}" alt="Beauty salon background" class="hero-bg">
@@ -25,7 +26,7 @@
                     <span>Price: {{product.price}} $</span>
                 </div>
                 <div class="col-8 mt-3">
-                    <button class="btn btn-book-categories rounded-pill">Book an Appointment</button>
+                    <a class="btn btn-book-categories rounded-pill" href="{{ social_media.instagram }}">Book an Appointment</a>
                 </div>
             </div>
         </div>
@@ -67,7 +68,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="bg-softpink border-section my-5">
     <div class="container">
@@ -135,9 +135,6 @@
 
 
 
-
-
-
 <section class="multimedia-section">
     <div class="container">
         <h1 class="text-pink text-center mb-3">Gallery</h1>
@@ -192,8 +189,6 @@
     </div>
 </section>
 
-
-{% load i18n %}
 
 
 <div class="container text-center">

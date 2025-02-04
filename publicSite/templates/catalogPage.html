@@ -17,15 +17,15 @@
         </p>
     </div>
 
-<div class="row justify-content-center mb-5">
-        <div class="col-md-4">
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-4  mt-4">
             <div class="card shadow-sm bg-transparent gold-border-double p-3">
                 <form method="GET" action="{% url 'Catalog' %}">
                     <h5 class="text-center"><label for="category" class="form-label">Filter by Category</label></h5>
                     <select name="category" id="category" class="form-select bg-transparent" onchange="this.form.submit()">
-                        <option value="bg-transparent">All Categories</option>
+                        <option class="bg-transparent" value="">All Categories</option>
                         {% for category in categories %}
-                            <option class="bg-transparent" value="{{ category.id }}" {% if category.id|stringformat:"s" == selected_category %}selected{% endif %}>
+                            <option class="bg-transparent" value="{{ category.id }}" {% if category.id|slugify == selected_category %} selected{% endif %}>
                                 {{ category.name }}
                             </option>
                         {% endfor %}
@@ -39,18 +39,16 @@
 
 
 <div class="container py-5  gold-border-double rounded">
-
-
     <div class="row g-4 d-flex justify-content-center">
         {% for product in products %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
             <div class="card text-center shadow p-2 gold-border-thin bg-softpink">
-                <img src="{{ product.image1.url }}" class="card-img-top p-2" alt="Facial Treatment">
+                <img src="{{ product.image1.url }}" class="card-img-top p-2" alt="Product Img">
                 <div class="card-body">
                     <h5 class="card-title">Where Beauty Begins</h5>
                     <p class="card-text border-start-0 border-top-0 border-end-0 gold-border-thin p-1">{{ product.short_subtittle }}</p>
                     <div class="row mb-3">
-                        <div class="col-6  border-start-0 border-top-0 border-bottom-0 gold-border-thin">
+                        <div class="col-6 border-start-0 border-top-0 border-bottom-0 gold-border-thin">
                             <span>Time: {{ product.duration }} min</span>
                         </div>
                         <div class="col-6">

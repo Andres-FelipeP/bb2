@@ -187,7 +187,7 @@
 </div><!--SalonImages-->
 
 <!--Products7-->
-<div class="container-sm mb-5">
+<div class="container mb-5">
 
     <div class="text-center text-pink my-5">
         <h1 class="">Beauty Services</h1>
@@ -195,66 +195,66 @@
     </div>
 
     <div class="row mb-3">
-        <div class="col-10 d-flex">
+        <div class="col-9 mb-2 d-flex flex-wrap gap-2">
+
             {% for category in categories|slice:":5" %}
                 <a class="btn btn-sm btn-book-categories rounded-pill">
                     {{ category.name }}
                 </a>
             {% endfor %}
 
-            <div class="btn-group" role="group">
+            <div class="btn-group d-sm-block d-md-none" role="group">
                 <button type="button" class="btn btn-sm btn-book-categories-2 rounded-pill dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    View More
+                    More
                 </button>
-                <ul class="dropdown-menu bg-gold">
+                <ul class="dropdown-menu  bg-gold">
                     {% for category in categories %}
                         <li><a class="dropdown-item text-bg btn-book-categories-3 " href="#">{{ category.name }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
         </div>
-        <div class="col-2 d-flex flex-row-reverse">
-            <a class="btn btn-sm btn-book-categories-2 rounded-pill">All</a>
+        <div class="col-3 d-flex flex-row-reverse align-items-center text-center">
+            <a class="btn btn-sm btn-book-categories-2 rounded-pill">View All</a>
         </div>
     </div>
 
     <div class="parent">
-        <div class="div1 position-relative"> <img src="{{ products_info.0.image.url }}" class="img-fluid" alt="Beauty salon background">
-            <button class=" position-absolute btn btn-sm btn-book-categories-2-bgw img-colage-btn bottom-0 end-0">
+        <div class="div1 position-relative"> <img src="{{ products_info.0.image1.url }}" class="img-fluid" alt="Beauty salon background">
+            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" >
                 <i class="bi bi-arrow-right"></i>
-            </button>
+            </a>
         </div>
-        <div class="div2 position-relative"> <img src="{{ products_info.1.image.url }}" class="img-fluid" alt="Beauty salon background">
-            <button class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn">
+        <div class="div2 position-relative"> <img src="{{ products_info.1.image1.url }}" class="img-fluid" alt="Beauty salon background">
+            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" >
                 <i class="bi bi-arrow-right"></i>
-            </button>
+            </a>
         </div>
-        <div class="div3 position-relative"> <img src="{{ products_info.2.image.url }}" class="img-fluid" alt="Beauty salon background">
-            <button class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn">
+        <div class="div3 position-relative"> <img src="{{ products_info.2.image1.url }}" class="img-fluid" alt="Beauty salon background">
+            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" >
                 <i class="bi bi-arrow-right"></i>
-            </button>
+            </a>
         </div>
-        <div class="div4 position-relative"> <img src="{{ products_info.3.image.url }}" class="img-fluid" alt="Beauty salon background">
-            <button class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn">
+        <div class="div4 position-relative"> <img src="{{ products_info.3.image1.url }}" class="img-fluid" alt="Beauty salon background">
+            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" >
                 <i class="bi bi-arrow-right"></i>
-            </button>
+            </a>
         </div>
-        <div class="div5 position-relative"> <img src="{{ products_info.4.image.url }}" class="img-fluid" alt="Beauty salon background">
-            <button class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn">
+        <div class="div5 position-relative"> <img src="{{ products_info.4.image1.url }}" class="img-fluid" alt="Beauty salon background">
+            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" >
                 <i class="bi bi-arrow-right"></i>
-            </button>
+            </a>
         </div>
-        <div class="div6 position-relative"> <img src="{{ products_info.5.image.url }}" class="img-fluid" alt="Beauty salon background">
-            <button class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn">
+        <div class="div6 position-relative"> <img src="{{ products_info.5.image1.url }}" class="img-fluid" alt="Beauty salon background">
+            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" >
                 <i class="bi bi-arrow-right"></i>
-            </button>
+            </a>
         </div>
-        <div class="div7 position-relative"> <img src="{{ products_info.6.image.url }}" class="img-fluid" alt="Beauty salon background">
-            <button class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn">
+        <div class="div7 position-relative"> <img src="{{ products_info.6.image1.url }}" class="img-fluid" alt="Beauty salon background">
+            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn">
                 <i class="bi bi-arrow-right"></i>
-            </button>
+            </a>
         </div>
-
     </div>
 </div>
 
@@ -415,8 +415,8 @@ $(document).ready(function(){
         const textFields = [
             { inputName: 'slogan', previewId: 'preview-slogan' },
             { inputName: 'who_am_i', previewId: 'preview-who-am-i' },
-            { inputName: 'skills', previewId: 'preview-home-vision' },
-            { inputName: 'home_mission', previewId: 'preview-skills' },
+            { inputName: 'skills', previewId: 'preview-skills' },
+            { inputName: 'home_mission', previewId: 'preview-home-vision' },
             { inputName: 'home_vision', previewId: 'preview-home-mission' },
             { inputName: 'attitude', previewId: 'preview-attitude' },
 
