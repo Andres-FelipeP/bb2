@@ -19,7 +19,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('home')  # Redirigir si ya está logueado
+        return redirect('dashboard')  # Redirigir si ya está logueado
 
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
@@ -597,7 +597,6 @@ def delete_video(request, video_id):
     product_id = video.product.id
     video.delete()
     return redirect('edit_product', pk=product_id)
-
 
 
 @login_required
