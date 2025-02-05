@@ -52,32 +52,32 @@
             <div class="collapse navbar-collapse " id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'HomePage' %}">Home Page</a>
+                        <a class="nav-link pretty-link-nav" href="{% url 'HomePage' %}">Home Page</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'AboutMe' %}">About Me</a>
+                        <a class="nav-link pretty-link-nav" href="{% url 'AboutMe' %}">About Me</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{%url 'Catalog'%}">Catalog</a>
+                        <a class="nav-link pretty-link-nav" href="{%url 'Catalog'%}">Catalog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'contactMe' %}">Contact Me</a>
+                        <a class="nav-link pretty-link-nav" href="{% url 'contactMe' %}">Contact Me</a>
                     </li>
                 </ul>
             </div>
 
              <a class="navbar-brand position-absolute top-100 start-50 translate-middle " style="z-index: 2" href="{% url 'HomePage' %}">
-                <img src="{%static 'LogoSquare.png'%}" alt="Logo" width="100" class="rounded-circle border border-2">
+                <img src="{% static 'default/logo.png' %}" alt="Logo" width="100" height="100" class="rounded-circle gold-border-thin" style="object-fit: cover">
             </a>
 
             <div class="d-flex align-items-center">
                 <a class="btn btn-book me-2 d-none d-md-block rounded-pill" href="{{social_media.instagram}}">Book an Appointment</a>
 
-                <button class="btn me-2 d-md-none calendarIcon">
-                <i class="bi bi-calendar2-week-fill" style="font-size: 2.2rem;"></i>
+                <a class="btn me-2 d-md-none calendarIcon" href="{{social_media.instagram}}">
+                <i class="bi bi-calendar2-week-fill"  style="font-size: 2.2rem;"></i>
 
-                </button>
-                <a href="sms:+573052420142" class="whatsapp-icon"><i class="bi bi-chat-heart" style="font-size: 2.2rem;"></i></a>
+                </a>
+                <a href="sms:+{{ pinky_beauty_bar_info.country_code }}{{ pinky_beauty_bar_info.phone_number }}" class="whatsapp-icon"><i class="bi bi-chat-heart" style="font-size: 2.2rem;"></i></a>
 
             </div>
         </div>

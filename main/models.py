@@ -18,6 +18,7 @@ class PinkyBeautyBarInfo(models.Model):
     address = models.TextField(null=True, blank=True)
     country_code = models.IntegerField(null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
+    logo = models.ImageField(upload_to='home_images/', default="default/img.png")
 
 
 class HomeContent(models.Model):
@@ -66,6 +67,7 @@ class Values(models.Model):
     def __str__(self):
         return self.tittle
 
+
 class Certificates(models.Model):
     tittle = models.CharField(max_length=200)
     description = models.TextField()
@@ -79,11 +81,13 @@ class ServicesPage(models.Model):
     def __str__(self):
         return "ServicesPage"
 
+
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.name
+
 
 class Products(models.Model):
     tittle = models.CharField(max_length=200)
@@ -101,9 +105,6 @@ class Products(models.Model):
 
     def __str__(self):
         return self.tittle
-
-
-
 
 
 class Benefits(models.Model):
@@ -162,160 +163,100 @@ class VideoGallery(models.Model):
         return f"Video {self.order}"
 
 
-@receiver(post_delete, sender=Products)
-def delete_product_files(sender, instance, **kwargs):
-    """Elimina las imágenes del producto al eliminarlo."""
-    if instance.banner:
-        instance.banner.delete(save=False)
-    if instance.image1:
-        instance.image1.delete(save=False)
-    if instance.image2:
-        instance.image2.delete(save=False)
-    if instance.image3:
-        instance.image3.delete(save=False)
+# Función auxiliar para evitar borrar imágenes dentro de "default/"
+def is_default_image(file_path):
+    return file_path and "default/" in file_path  # Asegúrate de que la carpeta es "default/" y no "defaults/"
 
+def delete_file(instance, file_field):
+    """Elimina el archivo si no está en la carpeta default/."""
+    file = getattr(instance, file_field)
+    if file and not is_default_image(file.name):
+        file.delete(save=False)
+
+def delete_old_file(instance, file_field, model_class):
+    """Elimina el archivo antiguo si cambia y no está en default/."""
+    if instance.pk:
+        try:
+            old_instance = model_class.objects.get(pk=instance.pk)
+            old_file = getattr(old_instance, file_field)
+            new_file = getattr(instance, file_field)
+            if old_file and old_file != new_file and not is_default_image(old_file.name):
+                old_file.delete(save=False)
+        except model_class.DoesNotExist:
+            pass
+
+
+@receiver(post_delete, sender=Products)
+def delete_products_files(sender, instance, **kwargs):
+    delete_file(instance, "banner")
+    delete_file(instance, "image1")
+    delete_file(instance, "image2")
+    delete_file(instance, "image3")
+
+@receiver(pre_save, sender=Products)
+def delete_old_products_files(sender, instance, **kwargs):
+    delete_old_file(instance, "banner", Products)
+    delete_old_file(instance, "image1", Products)
+    delete_old_file(instance, "image2", Products)
+    delete_old_file(instance, "image3", Products)
 
 @receiver(post_delete, sender=VideoGallery)
-def delete_video_files(sender, instance, **kwargs):
-    """Elimina el video cuando se borra la galería."""
-    if instance.video_file:
-        instance.video_file.delete(save=False)
+def delete_videogallery_files(sender, instance, **kwargs):
+    delete_file(instance, "video_file")
+
+@receiver(pre_save, sender=VideoGallery)
+def delete_old_videogallery_files(sender, instance, **kwargs):
+    delete_old_file(instance, "video_file", VideoGallery)
 
 @receiver(post_delete, sender=HomeContent)
 def delete_homecontent_files(sender, instance, **kwargs):
-    """Elimina imágenes cuando se borra una instancia de HomeContent."""
-    if instance.banner:
-        instance.banner.delete(save=False)
-    if instance.image1:
-        instance.image1.delete(save=False)
-    if instance.image2:
-        instance.image2.delete(save=False)
-    if instance.image3:
-        instance.image3.delete(save=False)
-    if instance.image4:
-        instance.image4.delete(save=False)
+    delete_file(instance, "banner")
+    delete_file(instance, "image1")
+    delete_file(instance, "image2")
+    delete_file(instance, "image3")
+    delete_file(instance, "image4")
+
+@receiver(pre_save, sender=HomeContent)
+def delete_old_homecontent_files(sender, instance, **kwargs):
+    delete_old_file(instance, "banner", HomeContent)
+    delete_old_file(instance, "image1", HomeContent)
+    delete_old_file(instance, "image2", HomeContent)
+    delete_old_file(instance, "image3", HomeContent)
+    delete_old_file(instance, "image4", HomeContent)
 
 @receiver(post_delete, sender=PinkyBeautyBarSalonImages)
 def delete_pinky_images(sender, instance, **kwargs):
-    """Elimina la imagen cuando se borra una instancia de PinkyBeautyBarSalonImages."""
-    if instance.image:
-        instance.image.delete(save=False)
-
-@receiver(post_delete, sender=AboutMePage)
-def delete_aboutme_files(sender, instance, **kwargs):
-    """Elimina imágenes cuando se borra una instancia de AboutMePage."""
-    if instance.banner:
-        instance.banner.delete(save=False)
-    if instance.image1:
-        instance.image1.delete(save=False)
-    if instance.image2:
-        instance.image2.delete(save=False)
-
-@receiver(post_delete, sender=ServicesPage)
-def delete_servicespage_files(sender, instance, **kwargs):
-    """Elimina el banner cuando se borra una instancia de ServicesPage."""
-    if instance.banner:
-        instance.banner.delete(save=False)
-
-@receiver(post_delete, sender=PhotoGallery)
-def delete_photogallery_files(sender, instance, **kwargs):
-    """Elimina la imagen cuando se borra una instancia de PhotoGallery."""
-    if instance.image:
-        instance.image.delete(save=False)
-
-
-# 🔄 Eliminar archivos antiguos cuando se actualiza una instancia
-@receiver(pre_save, sender=HomeContent)
-def delete_old_homecontent_files(sender, instance, **kwargs):
-    """Elimina imágenes anteriores cuando se actualiza una instancia de HomeContent."""
-    if instance.pk:
-        try:
-            old_instance = HomeContent.objects.get(pk=instance.pk)
-            if old_instance.banner and old_instance.banner != instance.banner:
-                old_instance.banner.delete(save=False)
-            if old_instance.image1 and old_instance.image1 != instance.image1:
-                old_instance.image1.delete(save=False)
-            if old_instance.image2 and old_instance.image2 != instance.image2:
-                old_instance.image2.delete(save=False)
-            if old_instance.image3 and old_instance.image3 != instance.image3:
-                old_instance.image3.delete(save=False)
-            if old_instance.image4 and old_instance.image4 != instance.image4:
-                old_instance.image4.delete(save=False)
-        except HomeContent.DoesNotExist:
-            pass
+    delete_file(instance, "image")
 
 @receiver(pre_save, sender=PinkyBeautyBarSalonImages)
 def delete_old_pinky_images(sender, instance, **kwargs):
-    """Elimina la imagen anterior cuando se actualiza una instancia de PinkyBeautyBarSalonImages."""
-    if instance.pk:
-        try:
-            old_instance = PinkyBeautyBarSalonImages.objects.get(pk=instance.pk)
-            if old_instance.image and old_instance.image != instance.image:
-                old_instance.image.delete(save=False)
-        except PinkyBeautyBarSalonImages.DoesNotExist:
-            pass
+    delete_old_file(instance, "image", PinkyBeautyBarSalonImages)
+
+
+@receiver(post_delete, sender=AboutMePage)
+def delete_aboutme_files(sender, instance, **kwargs):
+    delete_file(instance, "banner")
+    delete_file(instance, "image1")
+    delete_file(instance, "image2")
 
 @receiver(pre_save, sender=AboutMePage)
 def delete_old_aboutme_files(sender, instance, **kwargs):
-    """Elimina imágenes anteriores cuando se actualiza una instancia de AboutMePage."""
-    if instance.pk:
-        try:
-            old_instance = AboutMePage.objects.get(pk=instance.pk)
-            if old_instance.banner and old_instance.banner != instance.banner:
-                old_instance.banner.delete(save=False)
-            if old_instance.image1 and old_instance.image1 != instance.image1:
-                old_instance.image1.delete(save=False)
-            if old_instance.image2 and old_instance.image2 != instance.image2:
-                old_instance.image2.delete(save=False)
-        except AboutMePage.DoesNotExist:
-            pass
+    delete_old_file(instance, "banner", AboutMePage)
+    delete_old_file(instance, "image1", AboutMePage)
+    delete_old_file(instance, "image2", AboutMePage)
+
+@receiver(post_delete, sender=ServicesPage)
+def delete_servicespage_files(sender, instance, **kwargs):
+    delete_file(instance, "banner")
 
 @receiver(pre_save, sender=ServicesPage)
 def delete_old_servicespage_files(sender, instance, **kwargs):
-    """Elimina el banner anterior cuando se actualiza una instancia de ServicesPage."""
-    if instance.pk:
-        try:
-            old_instance = ServicesPage.objects.get(pk=instance.pk)
-            if old_instance.banner and old_instance.banner != instance.banner:
-                old_instance.banner.delete(save=False)
-        except ServicesPage.DoesNotExist:
-            pass
+    delete_old_file(instance, "banner", ServicesPage)
+
+@receiver(post_delete, sender=PhotoGallery)
+def delete_photogallery_files(sender, instance, **kwargs):
+    delete_file(instance, "image")
 
 @receiver(pre_save, sender=PhotoGallery)
 def delete_old_photogallery_files(sender, instance, **kwargs):
-    """Elimina la imagen anterior cuando se actualiza una instancia de PhotoGallery."""
-    if instance.pk:
-        try:
-            old_instance = PhotoGallery.objects.get(pk=instance.pk)
-            if old_instance.image and old_instance.image != instance.image:
-                old_instance.image.delete(save=False)
-        except PhotoGallery.DoesNotExist:
-            pass
-
-@receiver(pre_save, sender=Products)
-def delete_old_product_files(sender, instance, **kwargs):
-    """Elimina las imágenes anteriores cuando se actualiza."""
-    if instance.pk:
-        try:
-            old_instance = Products.objects.get(pk=instance.pk)
-            if old_instance.banner and old_instance.banner != instance.banner:
-                old_instance.banner.delete(save=False)
-            if old_instance.image1 and old_instance.image1 != instance.image1:
-                old_instance.image1.delete(save=False)
-            if old_instance.image2 and old_instance.image2 != instance.image2:
-                old_instance.image2.delete(save=False)
-            if old_instance.image3 and old_instance.image3 != instance.image3:
-                old_instance.image3.delete(save=False)
-        except Products.DoesNotExist:
-            pass
-
-@receiver(pre_save, sender=VideoGallery)
-def delete_old_video_files(sender, instance, **kwargs):
-    """Elimina el video anterior cuando se actualiza."""
-    if instance.pk:
-        try:
-            old_instance = VideoGallery.objects.get(pk=instance.pk)
-            if old_instance.video_file and old_instance.video_file != instance.video_file:
-                old_instance.video_file.delete(save=False)
-        except VideoGallery.DoesNotExist:
-            pass
+    delete_old_file(instance, "image", PhotoGallery)

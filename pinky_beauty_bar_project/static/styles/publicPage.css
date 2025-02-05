@@ -318,7 +318,7 @@ border-bottom: 9px double var(--color-gold);
 }
 
 .certificate-icon{
-    font-size: 300px;
+    font-size: 175px;
     color: var(--color-soft-pink);
 }
 
@@ -526,3 +526,53 @@ border-bottom: 9px double var(--color-gold);
     }
 }
 
+.pretty-link {
+        text-decoration: none;
+        color: var(--color-gold); /* Color dorado */
+        font-weight: bold;
+        position: relative;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .pretty-link::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-gold);
+        transform: scaleX(0);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .pretty-link:hover {
+        color: var(--color-pink); /* Un dorado más oscuro al hacer hover */
+    }
+
+    .pretty-link:hover::after {
+        transform: scaleX(1);
+    }
+
+
+.pretty-link-nav {
+        text-decoration: none;
+        position: relative;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .pretty-link-nav::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-gold);
+        transform: scaleX(0);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .pretty-link-nav:hover {
+        color: var(--color-pink); /* Un dorado más oscuro al hacer hover */
+    }
+
+    .pretty-link-nav:hover::after {
+        transform: scaleX(1);
+    }

@@ -282,16 +282,18 @@
                             <h1 class="">Mission</h1>
                             <p id="preview-about-me-mission">{{ about_me.about_me_mission }}</p>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 ">
                             <h1 class="">Vision</h1>
                             <p id="preview-about-me-vision">{{ about_me.about_me_vision }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <img id="preview-image2" src="{{ about_me.image2.url }}" class="img-fluid rounded-5 gc" alt="img">
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <img id="preview-image2" src="{{ about_me.image2.url }}" class="img-fluid rounded-5 gc" alt="img" style="height: 400px; width: auto; object-fit: cover">
                 </div>
             </div>
+
+
 
         </div>
     </div>

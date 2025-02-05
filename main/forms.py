@@ -7,11 +7,13 @@ from .models import SocialMedia, HomeContent, AboutMePage, Certificates, Product
 class PinkyBeautyBarInfoForms(forms.ModelForm):
     class Meta:
         model = PinkyBeautyBarInfo
-        fields = ['address', 'country_code', 'phone_number']
+        fields = ['address', 'country_code', 'phone_number', 'logo']
         widgets = {
             'address': forms.TextInput(attrs={'class': 'form-control bg-danger bg-opacity-10'}),
             'country_code': forms.NumberInput(attrs={'class': 'form-control bg-danger bg-opacity-10'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control bg-danger bg-opacity-10'}),
+            'logo': forms.ClearableFileInput(attrs={'class': 'form-control bg-danger bg-opacity-10'}),
+
         }
 
 

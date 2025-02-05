@@ -46,7 +46,7 @@
         </p>
     </div>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4 text-center align-items-center">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-md-3 g-4 text-center align-items-center">
         {% for certificate in certificates %}
             <div class="col d-flex flex-column align-items-center">
                 <i class="bi bi-award-fill certificate-icon  mb-3"></i>
@@ -84,8 +84,8 @@
 </section>
 <div class="bg-softpink border-section">
     <div class="container">
-        <div class="row my-5">
-            <div class="col-md-6 ">
+        <div class="row my-5 g-3">
+            <div class="col-md-6 text-center">
                 <h1 class="text-pink">The best aesthetic service in town</h1>
                 <p class="">
                     {{ about_me.competence }}
@@ -101,8 +101,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <img src="{{ about_me.image2.url }}" class="img-fluid rounded-5 gc" alt="img">
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <img src="{{ about_me.image2.url }}" class="img-fluid rounded-5 gc" alt="img" style="height: 400px; width: auto; object-fit: cover">
             </div>
         </div>
 

@@ -72,9 +72,11 @@ def edit_home(request):
     )
     pinky_beauty_bar_info, created = PinkyBeautyBarInfo.objects.get_or_create(
         defaults={
-            'address': '1060 Plaza Dr kissimmee fl 34743',
-            'country_code': '+1',
-            'phone_number': '000 0000 0000'
+            'address': "1060 Plaza Dr kissimmee fl 34743",
+            'country_code': "1",
+            'phone_number': "000 0000 0000",
+            'logo': "default/img.png"
+
         })
 
     categories = Category.objects.all()
@@ -123,12 +125,13 @@ def edit_my_profile(request):
         defaults={
             'address': "1060 Plaza Dr kissimmee fl 34743",
             'country_code': "1",
-            'phone_number': "000 0000 0000"
+            'phone_number': "000 0000 0000",
+            'logo': "default/img.png"
 
         })
 
     if request.method == "POST":
-        form = PinkyBeautyBarInfoForms(request.POST, instance=instance)
+        form = PinkyBeautyBarInfoForms(request.POST, request.FILES, instance=instance)
         if form.is_valid():
             form.save()
             return redirect('edit_my_profile')  # Redirige para actualizar la vista con los nuevos datos
@@ -153,6 +156,7 @@ def category_products(request, category_id):
     return render(request, 'category_products.html', {'category': category, 'products': products})
 
 
+@login_required
 def create_category(request):
     if request.method == "POST":
         form = CategoryForm(request.POST)
