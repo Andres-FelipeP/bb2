@@ -8,6 +8,8 @@ __pycache__/
 
 # Archivos de entorno (variables sensibles)
 .env
+venv
+.venv
 
 **/migrations/*.py
 !**/migrations/__init__.py
