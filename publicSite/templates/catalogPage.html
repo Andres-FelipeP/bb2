@@ -13,7 +13,7 @@
     <div class="text-center mt-5">
         <h1 class="text-pink ">Where Beauty Begins</h1>
         <p class="">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sagittis nisi neque.
+            Here, you will find only high-quality, certified products carefully selected to ensure safety, effectiveness, and the best results in every service.
         </p>
     </div>
 
@@ -38,24 +38,25 @@
 
 
 
-<div class="container py-5  gold-border-double rounded">
-    <div class="row g-4 d-flex justify-content-center">
+<div class="container p-5  gold-border-double rounded">
+    <div class="row g-4 d-flex justify-content-center align-items-stretch">
         {% for product in products %}
-        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-            <div class="card text-center shadow p-2 gold-border-thin bg-softpink">
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <div class="card text-center shadow p-2 gold-border-thin bg-softpink h-100">
                 <img src="{{ product.image1.url }}" class="card-img-top p-2" alt="Product Img">
                 <div class="card-body">
-                    <h5 class="card-title">Where Beauty Begins</h5>
-                    <p class="card-text border-start-0 border-top-0 border-end-0 gold-border-thin p-1">{{ product.short_subtittle }}</p>
-                    <div class="row mb-3">
-                        <div class="col-6 border-start-0 border-top-0 border-bottom-0 gold-border-thin">
-                            <span>Time: {{ product.duration }} min</span>
-                        </div>
-                        <div class="col-6">
-                            <span>Price: {{ product.price }}$</span>
-                        </div>
-                    </div>
-                    <a class="btn btn-book-categories rounded-pill" href="{% url 'Product' product.id %}">Learn More</a>
+                    <h5 class="fw-bold">{{ product.tittle }}</h5>
+                        <p class="card-text border-start-0 border-top-0 border-end-0 gold-border-thin p-1">{{ product.short_subtittle }}</p>
+                            <div class="row mb-3 ">
+                                <div class="col-6 border-start-0 border-top-0 border-bottom-0 gold-border-thin ">
+                                    <span>Time: {{ product.duration }} min</span>
+                                </div>
+                                <div class="col-6">
+                                    <span>Price: {{ product.price }}$</span>
+                                </div>
+                            </div>
+                            <a class="btn btn-book-categories-pnk rounded-pill" href="{% url 'Product' product.id %}">Learn More</a>
+
                 </div>
             </div>
         </div>

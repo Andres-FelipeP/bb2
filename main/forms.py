@@ -1,18 +1,20 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import SocialMedia, HomeContent, AboutMePage, Certificates, Products, ServicesPage, Benefits, Process, \
+from .models import HomeContent, AboutMePage, Certificates, Products, ServicesPage, Benefits, Process, \
     Myths, Recommendations, PhotoGallery, VideoGallery, PinkyBeautyBarSalonImages, Values, PinkyBeautyBarInfo, Category
 
 
 class PinkyBeautyBarInfoForms(forms.ModelForm):
     class Meta:
         model = PinkyBeautyBarInfo
-        fields = ['address', 'country_code', 'phone_number', 'logo']
+        fields = ['address', 'country_code', 'phone_number', 'logo', 'instagram', 'address_url']
         widgets = {
             'address': forms.TextInput(attrs={'class': 'form-control bg-danger bg-opacity-10'}),
             'country_code': forms.NumberInput(attrs={'class': 'form-control bg-danger bg-opacity-10'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control bg-danger bg-opacity-10'}),
             'logo': forms.ClearableFileInput(attrs={'class': 'form-control bg-danger bg-opacity-10'}),
+            'instagram': forms.URLInput(attrs={'class': 'form-control bg-danger bg-opacity-10'}),
+            'address_url': forms.URLInput(attrs={'class': 'form-control bg-danger bg-opacity-10'}),
 
         }
 
@@ -22,14 +24,6 @@ class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control bg-danger bg-opacity-25'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control bg-danger bg-opacity-25'}))
 
-
-class SocialMediaForm(forms.ModelForm):
-    class Meta:
-        model = SocialMedia
-        fields = ['instagram']
-        widgets = {
-            'instagram': forms.URLInput(attrs={'class': 'form-control bg-danger bg-opacity-25'}),
-        }
 
 
 class HomeContentForm(forms.ModelForm):

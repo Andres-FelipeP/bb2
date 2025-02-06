@@ -8,7 +8,7 @@
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-book-categories-2">Save</button>
-            <a href="{% url 'edit_salon' %}" class="btn btn-book-categories">Cancel</a>
+            <a href="{% url 'edit_product' product.id %}" class="btn btn-book-categories">Cancel</a>
         </form>
         </div>
     </div>

@@ -4,33 +4,39 @@
 <div class="container mt-5 p-5">
 
     <div class="row">
-            <div class="col-lg-5">
+        <div class="col-lg-5">
 
-                <div class=" text-pink mb-5 mt-5 ">
-                    <h1 class="text-center">Get in Touch</h1>
-                </div>
-
-                <div class="text-center mb-3 pb-4 gold-border-thin border-top-0 border-end-0 border-start-0">
-                    <h3>Contact Me</h3>
-
-                    <h6>Text Messages</h6>
-                    <a class="pretty-link" href="sms:+{{ pinky_beauty_bar_info.country_code }}{{ pinky_beauty_bar_info.phone_number }}">
-                        +{{ pinky_beauty_bar_info.country_code }} {{ pinky_beauty_bar_info.phone_number }}
-                    </a>
-
-                    <h6>Instagram DM</h6>
-                    <a class="pretty-link" href="{{ social_media.instagram }}">pinky.beauty.bar</a>
-                </div>
-
-                <div class="text-center mb-5">
-                    <h3 class="">Address</h3>
-                    <a class="pretty-link" href="https://www.google.com/maps/place/Aris+Spa+%7C+Kissimmee+Spa/@28.3241681,-81.3380936,17z/data=!3m1!4b1!4m6!3m5!1s0x88dd89bd3638ac65:0xdb05ffd5d1b4b0dd!8m2!3d28.3241681!4d-81.3380936!16s%2Fg%2F11tmwcq29k?entry=ttu&g_ep=EgoyMDI1MDIwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" >
-                        {{pinky_beauty_bar_info.address}} ( Aris spa )</a>
-                </div>
-
+            <div class=" text-pink mb-5 mt-5 ">
+                <h1 class="text-center">Get in Touch</h1>
             </div>
-        <div class="col-lg-7">
-            <div class="mt-5" id="map" style="height: 400px; width: 100%; z-index: 0"></div>
+
+            <div class="text-center mb-3 pb-4 gold-border-thin border-top-0 border-end-0 border-start-0">
+                <h3>Contact Me</h3>
+
+                <h6>Text Messages</h6>
+                <a class="pretty-link" href="sms:+{{ pinky_beauty_bar_info.country_code }}{{ pinky_beauty_bar_info.phone_number }}"  target="_blank">
+                    +{{ pinky_beauty_bar_info.country_code }} {{ pinky_beauty_bar_info.phone_number }}
+                </a>
+
+                <h6>Instagram DM</h6>
+                <a class="pretty-link" href="{{ pinky_beauty_bar_info.instagram }}"  target="_blank">pinky.beauty.bar</a>
+            </div>
+
+            <div class="text-center mb-5">
+                <h3 class="">Address</h3>
+                <a class="pretty-link" href="{{ pinky_beauty_bar_info.address_url }}" target="_blank" >
+                    {{pinky_beauty_bar_info.address}}</a>
+            </div>
+
+        </div>
+        <div class="col-lg-7 d-flex justify-content-center">
+            <div class="ratio ratio-16x9 gold-border-double">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3512.1464931512164!2d-81.3380936!3d28.324168099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88dd89bd3638ac65%3A0xdb05ffd5d1b4b0dd!2sAris%20Spa%20%7C%20Kissimmee%20Spa!5e0!3m2!1ses-419!2sco!4v1738822094932!5m2!1ses-419!2sco"
+                    style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
         </div>
     </div>
 </div>

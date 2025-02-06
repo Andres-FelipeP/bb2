@@ -67,7 +67,7 @@ urlpatterns = [
     path('dashboard/editBeautySalonImages/', views.edit_beauty_salon_images, name='edit_salon'),
     path('dashboard/editBeautySalonImages/add', views.add_beauty_salon_images, name='add_salon_images'),
     path('dashboard/editBeautySalonImages/delete/<int:image_id>/', views.delete_beauty_salon_images, name='delete_salon_images'),
-    path('dashboard/editBeautySalonImages/edit/<int:image_id>/', views.edit_beauty_salon_images_2,name='edit_salon_images'),
+    path('dashboard/editBeautySalonImages/edit/<int:image_id>/', views.edit_beauty_salon_images_2, name='edit_salon_images'),
 
 
 ]

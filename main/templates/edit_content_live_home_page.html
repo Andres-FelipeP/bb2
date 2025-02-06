@@ -220,38 +220,38 @@
     </div>
 
     <div class="parent">
-        <div class="div1 position-relative"> <img src="{{ products_info.0.image1.url }}" class="img-fluid" alt="Beauty salon background">
-            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" >
+        <div class="div1 position-relative"> <img src="{% if products_info.0 %} {{ products_info.0.image1.url }} {% else %} {% static 'default/image_default.png' %} {% endif %}" class="img-fluid" alt="Beauty salon background">
+            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" href="#">
                 <i class="bi bi-arrow-right"></i>
             </a>
         </div>
-        <div class="div2 position-relative"> <img src="{{ products_info.1.image1.url }}" class="img-fluid" alt="Beauty salon background">
-            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" >
+        <div class="div2 position-relative"> <img src="{% if products_info.1 %} {{ products_info.1.image1.url }} {% else %} {% static 'default/image_default.png' %} {% endif %}" class="img-fluid" alt="Beauty salon background">
+            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" href="#">
                 <i class="bi bi-arrow-right"></i>
             </a>
         </div>
-        <div class="div3 position-relative"> <img src="{{ products_info.2.image1.url }}" class="img-fluid" alt="Beauty salon background">
-            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" >
+        <div class="div3 position-relative"> <img src="{% if products_info.2 %} {{ products_info.2.image1.url }} {% else %} {% static 'default/image_default.png' %} {% endif %}" class="img-fluid" alt="Beauty salon background">
+            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" href="#">
                 <i class="bi bi-arrow-right"></i>
             </a>
         </div>
-        <div class="div4 position-relative"> <img src="{{ products_info.3.image1.url }}" class="img-fluid" alt="Beauty salon background">
-            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" >
+        <div class="div4 position-relative"> <img src="{% if products_info.3 %} {{ products_info.3.image1.url }} {% else %} {% static 'default/image_default.png' %} {% endif %}" class="img-fluid" alt="Beauty salon background">
+            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" href="#">
                 <i class="bi bi-arrow-right"></i>
             </a>
         </div>
-        <div class="div5 position-relative"> <img src="{{ products_info.4.image1.url }}" class="img-fluid" alt="Beauty salon background">
-            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" >
+        <div class="div5 position-relative"> <img src="{% if products_info.4 %} {{ products_info.4.image4.url }} {% else %} {% static 'default/image_default.png' %} {% endif %}" class="img-fluid" alt="Beauty salon background">
+            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" href="#">
                 <i class="bi bi-arrow-right"></i>
             </a>
         </div>
-        <div class="div6 position-relative"> <img src="{{ products_info.5.image1.url }}" class="img-fluid" alt="Beauty salon background">
-            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" >
+        <div class="div6 position-relative"> <img src="{% if products_info.5 %} {{ products_info.5.image1.url }} {% else %} {% static 'default/image_default.png' %} {% endif %}" class="img-fluid" alt="Beauty salon background">
+            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" href="#">
                 <i class="bi bi-arrow-right"></i>
             </a>
         </div>
-        <div class="div7 position-relative"> <img src="{{ products_info.6.image1.url }}" class="img-fluid" alt="Beauty salon background">
-            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn">
+        <div class="div7 position-relative"> <img src="{% if products_info.6 %} {{ products_info.6.image1.url }} {% else %} {% static 'default/image_default.png' %} {% endif %}" class="img-fluid" alt="Beauty salon background">
+            <a class=" position-absolute btn btn-sm btn-book-categories-2-bgw bottom-0 end-0 img-colage-btn" href="#">
                 <i class="bi bi-arrow-right"></i>
             </a>
         </div>
@@ -261,7 +261,7 @@
 <div class="bg-softpink border-section">
     <div class="container my-5">
         <div class="row mb-5 g-5">
-            <div class="text-center text-pink mb-5">
+            <div class="text-center text-pink mb-3">
                 <h1 class="">My Promise to you</h1>
                 <h5 class="">Pinky Beauty Bar.</h5>
             </div>
@@ -299,36 +299,51 @@
         </h2>
         <div class="row d-flex justify-content-evenly">
             <div class="col-auto">
-                <a href="#" class="instagram-icon-home"><i class="bi bi-instagram" style="font-size: 2.2rem;"></i></a>
+                <a href="#" class="instagram-icon-home pretty-link-2"><i class="bi bi-instagram" style="font-size: 2.2rem;"></i></a>
             </div>
             <div class="col-auto">
-                <a href="#" class="instagram-icon-home"><i class="bbi bi-chat-heart" style="font-size: 2.2rem;"></i></a>
+                <a href="#" class="instagram-icon-home pretty-link-2"><i class="bbi bi-chat-heart" style="font-size: 2.2rem;"></i></a>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container">
+<div class="container mt-5 p-5">
 
-    <div class="row">
-            <div class="col-md-3">
+    <div class="row justify-content-center">
+            <div class="col-lg-5">
 
                 <div class=" text-pink mb-5 mt-5 ">
                     <h1 class="text-center">Get in Touch</h1>
                 </div>
 
-                <div class="text-center mb-5 border-bottom">
-                    <h3 class="">Contact</h3>
-                    <p class="">+{{pinky_beauty_bar_info.country_code}} {{pinky_beauty_bar_info.phone_number}}</p>
+                <div class="text-center mb-3 pb-4 gold-border-thin border-top-0 border-end-0 border-start-0">
+                    <h3>Contact Me</h3>
+
+                    <h6>Text Messages</h6>
+                    <a class="pretty-link" href="#">
+                        +{{ pinky_beauty_bar_info.country_code }} {{ pinky_beauty_bar_info.phone_number }}
+                    </a>
+
+                    <h6>Instagram DM</h6>
+                    <a class="pretty-link" href="#">pinky.beauty.bar</a>
                 </div>
+
                 <div class="text-center mb-5">
                     <h3 class="">Address</h3>
-                    <p class="">{{pinky_beauty_bar_info.address}}</p>
+                    <a class="pretty-link" href="#" target="_blank" >
+                        {{pinky_beauty_bar_info.address}} ( Aris spa )</a>
                 </div>
 
             </div>
-            <div class="col-md-9 ">
-                <div class="mt-5" id="map" style="height: 400px; width: 100%; z-index: 0"></div>
+            <div class="col-lg-7 d-flex justify-content-center">
+                <div class="ratio ratio-16x9 gold-border-double">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3512.1464931512164!2d-81.3380936!3d28.324168099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88dd89bd3638ac65%3A0xdb05ffd5d1b4b0dd!2sAris%20Spa%20%7C%20Kissimmee%20Spa!5e0!3m2!1ses-419!2sco!4v1738822094932!5m2!1ses-419!2sco"
+                        style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </div>
     </div>
 </div>
@@ -388,8 +403,8 @@ $(document).ready(function(){
             { inputName: 'banner', previewId: 'preview-banner' },
             { inputName: 'image1', previewId: 'preview-image1' },
             { inputName: 'image2', previewId: 'preview-image2' },
-            { inputName: 'image3', previewId: 'preview-image2' },
-            { inputName: 'image4', previewId: 'preview-image2' }
+            { inputName: 'image3', previewId: 'preview-image3' },
+            { inputName: 'image4', previewId: 'preview-image4' }
 
         ];
 

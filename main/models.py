@@ -7,18 +7,14 @@ import os
 from django.db.models.signals import post_delete, pre_save
 
 
-class SocialMedia(models.Model):
-    instagram = models.URLField(max_length=200, blank=True, null=True)
-
-    def __str__(self):
-        return f"Social Media"
-
-
 class PinkyBeautyBarInfo(models.Model):
     address = models.TextField(null=True, blank=True)
     country_code = models.IntegerField(null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
-    logo = models.ImageField(upload_to='home_images/', default="default/img.png")
+    logo = models.ImageField(upload_to='PinkyBeautyBarInfo/', default="default/img.png")
+    instagram = models.URLField(max_length=200, blank=True, null=True)
+    address_url = models.URLField(null=True, blank=True)
+
 
 
 class HomeContent(models.Model):

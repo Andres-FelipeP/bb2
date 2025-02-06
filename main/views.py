@@ -4,9 +4,9 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from .forms import PinkyBeautyBarSalonImagesForm, ServicesPageForm, ValuesForm, CertificatesForm, AboutMePageForm, \
     HomeContentForm, ProductsForm, Benefits, Process, Myths, Recommendations, \
-    BenefitsForms, ProcessForms, MythsForms, RecommendationsForms, PhotoGalleryForm, VideoGalleryForm, SocialMediaForm, \
+    BenefitsForms, ProcessForms, MythsForms, RecommendationsForms, PhotoGalleryForm, VideoGalleryForm, \
     PinkyBeautyBarInfoForms, CategoryForm
-from .models import Certificates, Values, SocialMedia, HomeContent, Products, PhotoGallery, VideoGallery, \
+from .models import Certificates, Values, HomeContent, Products, PhotoGallery, VideoGallery, \
     PinkyBeautyBarSalonImages, AboutMePage, ServicesPage, PinkyBeautyBarInfo, Category
 from django.shortcuts import get_object_or_404
 from django.db import IntegrityError
@@ -65,18 +65,14 @@ def edit_home(request):
     salon_images = PinkyBeautyBarSalonImages.objects.all()
     products_info = Products.objects.all()[:7]
 
-    social_media, created = SocialMedia.objects.get_or_create(
-        defaults={
-            'instagram': 'https://www.instagram.com/pinky.beauty.bar/',
-        }
-    )
     pinky_beauty_bar_info, created = PinkyBeautyBarInfo.objects.get_or_create(
         defaults={
             'address': "1060 Plaza Dr kissimmee fl 34743",
             'country_code': "1",
             'phone_number': "000 0000 0000",
-            'logo': "default/img.png"
-
+            'logo': "default/img.png",
+            'instagram': 'https://www.instagram.com/pinky.beauty.bar/',
+            'address_url': 'https://maps.app.goo.gl/vdj2Qj8oC1tehJiL7'
         })
 
     categories = Category.objects.all()
@@ -89,7 +85,7 @@ def edit_home(request):
     else:
         form = HomeContentForm(instance=home_content)
 
-    return render(request, 'edit_content_live_home_page.html', {'home_content': home_content, 'salon_images': salon_images, 'products_info': products_info, 'social_media':social_media, 'form': form, 'pinky_beauty_bar_info': pinky_beauty_bar_info, 'categories': categories})
+    return render(request, 'edit_content_live_home_page.html', {'home_content': home_content, 'salon_images': salon_images, 'products_info': products_info, 'form': form, 'pinky_beauty_bar_info': pinky_beauty_bar_info, 'categories': categories})
 
 
 @login_required
@@ -126,12 +122,15 @@ def edit_my_profile(request):
             'address': "1060 Plaza Dr kissimmee fl 34743",
             'country_code': "1",
             'phone_number': "000 0000 0000",
-            'logo': "default/img.png"
+            'logo': "default/img.png",
+            'instagram': 'https://www.instagram.com/pinky.beauty.bar/',
+            'address_url': 'https://maps.app.goo.gl/vdj2Qj8oC1tehJiL7'
 
         })
 
     if request.method == "POST":
         form = PinkyBeautyBarInfoForms(request.POST, request.FILES, instance=instance)
+
         if form.is_valid():
             form.save()
             return redirect('edit_my_profile')  # Redirige para actualizar la vista con los nuevos datos
@@ -139,7 +138,8 @@ def edit_my_profile(request):
     else:
         form = PinkyBeautyBarInfoForms(instance=instance)
 
-    return render(request, 'edit_content_live_my_profile.html', {'form': form})
+
+    return render(request, 'edit_content_live_my_profile.html', {'form': form, 'pinky_beauty_bar_info': instance})
 
 
 @login_required
@@ -214,11 +214,9 @@ def edit_product(request, pk):
     process = Process.objects.filter(product=product)
     myths = Myths.objects.filter(product=product)
     recommendations = Recommendations.objects.filter(product=product)
-
     photo_gallery = PhotoGallery.objects.filter(product=product).order_by('order')
     video_gallery = VideoGallery.objects.filter(product=product).order_by('order')
-    print(photo_gallery)
-    print(video_gallery)
+
     if request.method == "POST":
         product_form = ProductsForm(request.POST, request.FILES, instance=product)
 
@@ -347,7 +345,7 @@ def edit_certificates(request, certificate_id):
 
 @login_required
 def delete_certificates(request, certificate_id):
-    certificates = get_object_or_404(Values, id=certificate_id)
+    certificates = get_object_or_404(Certificates, id=certificate_id)
     certificates.delete()
     return redirect('edit_about_me')
 
@@ -430,7 +428,7 @@ def edit_process(request, process_id):
 
 @login_required
 def delete_process(request, process_id):
-    process = get_object_or_404(Benefits, id=process_id)
+    process = get_object_or_404(Process, id=process_id)
     product_id = process.product.id
     process.delete()
     return redirect('edit_product', pk=product_id)
@@ -471,7 +469,7 @@ def edit_Myth(request, Myth_id):
 
 @login_required
 def delete_Myth(request, Myth_id):
-    myth = get_object_or_404(Benefits, id=Myth_id)
+    myth = get_object_or_404(Myths, id=Myth_id)
     product_id = myth.product.id
     myth.delete()
     return redirect('edit_product', pk=product_id)

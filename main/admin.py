@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Category, SocialMedia,HomeContent,AboutMePage,ServicesPage,Benefits,Process,Myths,Recommendations,PhotoGallery,VideoGallery,PinkyBeautyBarSalonImages,Products,Certificates, PinkyBeautyBarInfo, PinkyBeautyBarSalonImages, Values
+from .models import Category,HomeContent,AboutMePage,ServicesPage,Benefits,Process,Myths,Recommendations,PhotoGallery,VideoGallery,PinkyBeautyBarSalonImages,Products,Certificates, PinkyBeautyBarInfo, PinkyBeautyBarSalonImages, Values
 
-admin.site.register(SocialMedia)
 admin.site.register(PinkyBeautyBarInfo)
 admin.site.register(HomeContent)
 admin.site.register(PinkyBeautyBarSalonImages)

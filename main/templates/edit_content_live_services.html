@@ -84,8 +84,8 @@
     <div class="row g-4 d-flex justify-content-center">
         {% for product in products %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-            <div class="card card-cat text-center shadow p-2 gold-border-thin ">
-                <img src="{{ product.image1.url }}" class="card-img-top p-2" alt="Facial Treatment">
+            <div class="card text-center shadow p-2 gold-border-thin bg-softpink">
+                <img src="{{ product.image1.url }}" class="card-img-top p-2" alt="Product Img">
                 <div class="card-body">
                     <h5 class="card-title">Where Beauty Begins</h5>
                     <p class="card-text border-start-0 border-top-0 border-end-0 gold-border-thin p-1">{{ product.short_subtittle }}</p>
@@ -97,7 +97,7 @@
                             <span>Price: {{ product.price }}$</span>
                         </div>
                     </div>
-                    <a class="btn btn-book-categories rounded-pill" href="#">Learn More</a>
+                    <a class="btn btn-book-categories-pnk rounded-pill" href="#">Learn More</a>
                 </div>
             </div>
         </div>

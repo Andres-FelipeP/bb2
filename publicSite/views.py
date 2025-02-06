@@ -1,18 +1,16 @@
 from django.shortcuts import render
-from main.models import Category, Products, AboutMePage, HomeContent, PinkyBeautyBarSalonImages, PhotoGallery, SocialMedia, Values, Certificates, ServicesPage, PinkyBeautyBarSalonImages, PinkyBeautyBarInfo,VideoGallery, Benefits, Myths, Recommendations, Process
+from main.models import Category, Products, AboutMePage, HomeContent, PinkyBeautyBarSalonImages, PhotoGallery, Values, Certificates, ServicesPage, PinkyBeautyBarSalonImages, PinkyBeautyBarInfo,VideoGallery, Benefits, Myths, Recommendations, Process
 from django.shortcuts import get_object_or_404
-
 
 
 def home(request):
     home_content = HomeContent.objects.first()
     salon_images = PinkyBeautyBarSalonImages.objects.all()
     products_info = Products.objects.all()[:7]
-    social_media = SocialMedia.objects.first()
     pinky_beauty_bar_info = PinkyBeautyBarInfo.objects.first()
     categories = Category.objects.all()
 
-    return render(request, 'homePage.html', {'home_content': home_content,'categories':categories,'social_media':social_media, 'salon_images': salon_images, 'products_info': products_info, 'pinky_beauty_bar_info': pinky_beauty_bar_info})
+    return render(request, 'homePage.html', {'home_content': home_content,'categories':categories, 'salon_images': salon_images, 'products_info': products_info, 'pinky_beauty_bar_info': pinky_beauty_bar_info})
 
 def contactMe(request):
     pinky_beauty_bar_info = PinkyBeautyBarInfo.objects.first()
@@ -45,7 +43,7 @@ def catalog(request):
 
 def product(request, product_id):
     product = get_object_or_404(Products, id=product_id)
-    social_media = SocialMedia.objects.first()
+    pinky_beauty_bar_info = PinkyBeautyBarInfo.objects.first()
     benefits = Benefits.objects.filter(product=product)
     process = Process.objects.filter(product=product)
     myths = Myths.objects.filter(product=product)
@@ -54,6 +52,6 @@ def product(request, product_id):
     video_gallery = VideoGallery.objects.filter(product=product).order_by('order')
 
 
-    return render(request, 'productPage.html', {'social_media':social_media,'product': product, 'benefits':benefits, 'process':process, 'myths':myths, 'recommendations': recommendations, 'photo_gallery': photo_gallery, 'video_gallery': video_gallery})
+    return render(request, 'productPage.html', {'pinky_beauty_bar_info':pinky_beauty_bar_info,'product': product, 'benefits':benefits, 'process':process, 'myths':myths, 'recommendations': recommendations, 'photo_gallery': photo_gallery, 'video_gallery': video_gallery})
 
 
