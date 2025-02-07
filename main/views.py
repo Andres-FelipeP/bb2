@@ -50,7 +50,7 @@ def edit_home(request):
     home_content, created = HomeContent.objects.get_or_create(
         defaults={
             "slogan": "Slogan",
-            "banner": "istockphoto-1354776457-612x612_erjftg",
+            "banner": "default_img",
             "who_am_i": "who am i?",
             "skills": "skills",
             "image1": "default_img",

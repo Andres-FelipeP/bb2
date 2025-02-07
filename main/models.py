@@ -13,7 +13,7 @@ class PinkyBeautyBarInfo(models.Model):
     address = models.TextField(null=True, blank=True)
     country_code = models.IntegerField(null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
-    logo = CloudinaryField('image')
+    logo = CloudinaryField('image', default='default_img')
     instagram = models.URLField(max_length=200, blank=True, null=True)
     address_url = models.URLField(null=True, blank=True)
 
@@ -39,7 +39,7 @@ class HomeContent(models.Model):
 class PinkyBeautyBarSalonImages(models.Model):
     tittle = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
-    image = CloudinaryField('image')
+    image = CloudinaryField('image', default='default_img')
 
     def __str__(self):
         return self.tittle
@@ -75,7 +75,7 @@ class Certificates(models.Model):
 
 
 class ServicesPage(models.Model):
-    banner = CloudinaryField('image')
+    banner = CloudinaryField('image', default='default_img')
     def __str__(self):
         return "ServicesPage"
 
@@ -89,7 +89,7 @@ class Category(models.Model):
 
 class Products(models.Model):
     tittle = models.CharField(max_length=200)
-    banner = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
+    banner = CloudinaryField('image', default='default_img')
     subtittle = models.CharField(max_length=200)
     short_subtittle = models.CharField(max_length=100, default='My product')
     description = models.TextField()
