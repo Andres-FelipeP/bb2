@@ -1,19 +1,24 @@
-<div class="container my-5 pt-5 ">
-    <h2 class="text-center p-5">Pinky Beauty Bar Category Edit</h2>
-    <div class="card shadow-lg border-0 rounded-4">
-        <div class="card-body p-5">
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
+{% extends 'base_dashboard.html' %} {% load static %}
+{% block content %}
 
-                <div class="mb-3">
-                    <label class="form-label text-secondary">Address</label>
-                    {{ form.name }}
-                </div>
+    <div class="container my-5 pt-5 ">
+        <h2 class="text-center p-5">Pinky Beauty Bar Category Edit</h2>
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-body p-5">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
 
-                <div class="text-center ">
-                    <button type="submit" class="btn w-50 btn-book-categories-2">Save Changes</button>
-                </div>
-            </form>
+                    <div class="mb-3">
+                        <label class="form-label text-secondary">Address</label>
+                        {{ form.name }}
+                    </div>
+
+                    <div class="text-center ">
+                        <button type="submit" class="btn w-50 btn-book-categories-2">Save Changes</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+
+{% endblock %}
