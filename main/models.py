@@ -146,14 +146,13 @@ class PhotoGallery(models.Model):
     image = CloudinaryField('image', default='default_img')
     order = models.IntegerField()
 
-
     def __str__(self):
         return f"Photo {self.order}"
 
 
 class VideoGallery(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='video_gallery')
-    video_file = CloudinaryField('video')
+    video_file = CloudinaryField('video', resource_type='video')  # <-- Aquí indicamos que es un video
     video_youtube_url = models.URLField(max_length=200, blank=True, null=True)
     order = models.IntegerField()
 
