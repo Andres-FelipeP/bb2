@@ -17,6 +17,13 @@ DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'TU_CLOUD_NAME',
+    'API_KEY': 'TU_API_KEY',
+    'API_SECRET': 'TU_API_SECRET',
+}
+
+
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
@@ -32,6 +39,8 @@ INSTALLED_APPS = [
     'main',
     'publicSite',
     'widget_tweaks',
+    'cloudinary',
+    'cloudinary_storage',
 
 ]
 
@@ -119,6 +128,7 @@ if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "pinky_beauty_bar_project/static"),
