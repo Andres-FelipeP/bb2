@@ -46,7 +46,7 @@ class PinkyBeautyBarSalonImages(models.Model):
 
 
 class AboutMePage(models.Model):
-    banner = models.ImageField(upload_to='AboutMe/')
+    banner = CloudinaryField('image', default="default/image_default.png")
     description = models.TextField()
     competence = models.TextField()
     about_me_mission = models.TextField()
