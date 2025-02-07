@@ -21,13 +21,13 @@ class PinkyBeautyBarInfo(models.Model):
 
 class HomeContent(models.Model):
     slogan = models.CharField(max_length=200)
-    banner = CloudinaryField('image')
+    banner = CloudinaryField('image', max_length=255)
     who_am_i = models.TextField()
     skills = models.TextField()
-    image1 = CloudinaryField('image')
-    image2 = CloudinaryField('image')
-    image3 = CloudinaryField('image')
-    image4 = CloudinaryField('image')
+    image1 = CloudinaryField('image', max_length=255)
+    image2 = CloudinaryField('image', max_length=255)
+    image3 = CloudinaryField('image', max_length=255)
+    image4 = CloudinaryField('image', max_length=255)
     home_mission = models.CharField(max_length=120)
     home_vision = models.CharField(max_length=120)
     attitude = models.CharField(max_length=120)
