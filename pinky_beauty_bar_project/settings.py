@@ -2,6 +2,11 @@ from pathlib import Path
 import os
 import dj_database_url
 
+import cloudinary
+import cloudinary.uploader
+from cloudinary.utils import cloudinary_url
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -17,11 +22,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
-    'API_KEY': os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
-    'API_SECRET': os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
-}
+cloudinary.config(
+    cloud_name = os.environ.get('CLOUD_NAME'),
+    api_key = os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
+    api_secret = os.environ.get('RENDER_EXTERNAL_HOSTNAME'), # Click 'View API Keys' above to copy your API secret
+    secure=True
+)
+
 
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
