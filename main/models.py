@@ -21,13 +21,13 @@ class PinkyBeautyBarInfo(models.Model):
 
 class HomeContent(models.Model):
     slogan = models.CharField(max_length=200)
-    banner = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
+    banner = CloudinaryField('image', default='default_img')
     who_am_i = models.TextField()
     skills = models.TextField()
-    image1 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
-    image2 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
-    image3 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
-    image4 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
+    image1 = CloudinaryField('image', default='default_img')
+    image2 = CloudinaryField('image', default='default_img')
+    image3 = CloudinaryField('image', default='default_img')
+    image4 = CloudinaryField('image', default='default_img')
     home_mission = models.CharField(max_length=120)
     home_vision = models.CharField(max_length=120)
     attitude = models.CharField(max_length=120)
@@ -46,13 +46,13 @@ class PinkyBeautyBarSalonImages(models.Model):
 
 
 class AboutMePage(models.Model):
-    banner = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
+    banner = CloudinaryField('image', default='default_img')
     description = models.TextField()
     competence = models.TextField()
     about_me_mission = models.TextField()
     about_me_vision = models.TextField()
-    image1 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
-    image2 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
+    image1 = CloudinaryField('image', default='default_img')
+    image2 = CloudinaryField('image', default='default_img')
 
     def __str__(self):
         return "AboutMePage"
@@ -95,9 +95,9 @@ class Products(models.Model):
     description = models.TextField()
     duration = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image1 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
-    image2 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
-    image3 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
+    image1 = CloudinaryField('image', default='default_img')
+    image2 = CloudinaryField('image', default='default_img')
+    image3 = CloudinaryField('image', default='default_img')
     categories = models.ManyToManyField(Category, related_name="products")
 
 
@@ -143,7 +143,7 @@ class Recommendations(models.Model):
 
 class PhotoGallery(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='photo_gallery')
-    image = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
+    image = CloudinaryField('image', default='default_img')
     order = models.IntegerField()
 
 
@@ -161,11 +161,11 @@ class VideoGallery(models.Model):
         return f"Video {self.order}"
 
 def is_default_image(file_path):
-    return file_path and "istockphoto-1354776457-612x612_erjftg" in file_path  # Verifica si la imagen es la predeterminada
+    return file_path and "default_img" in file_path  # Verifica si la imagen es la predeterminada
 
 def delete_file(file_path):
     """Elimina el archivo de Cloudinary."""
-    if file_path and "default/" not in file_path:  # Evita borrar imágenes en la carpeta default/
+    if file_path and not is_default_image(file_path):  # Evita borrar imágenes predeterminadas
         public_id = file_path.split("/")[-1].split(".")[0]  # Obtén el public_id de Cloudinary
         cloudinary.uploader.destroy(public_id)
 
@@ -176,7 +176,7 @@ def delete_old_file(instance, file_field, model_class):
             old_instance = model_class.objects.get(pk=instance.pk)
             old_file = getattr(old_instance, file_field)
             new_file = getattr(instance, file_field)
-            if old_file and old_file != new_file and "default/" not in old_file.url:
+            if old_file and old_file != new_file and old_file.url and not is_default_image(old_file.url):
                 public_id = old_file.url.split("/")[-1].split(".")[0]  # Obtén el public_id
                 cloudinary.uploader.destroy(public_id)
         except model_class.DoesNotExist:

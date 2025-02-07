@@ -53,10 +53,10 @@ def edit_home(request):
             "banner": "istockphoto-1354776457-612x612_erjftg",
             "who_am_i": "who am i?",
             "skills": "skills",
-            "image1": "istockphoto-1354776457-612x612_erjftg",
-            "image2": "istockphoto-1354776457-612x612_erjftg",
-            "image3": "istockphoto-1354776457-612x612_erjftg",
-            "image4": "istockphoto-1354776457-612x612_erjftg",
+            "image1": "default_img",
+            "image2": "default_img",
+            "image3": "default_img",
+            "image4": "default_img",
             "home_mission": "home mission",
             "home_vision": "home vision",
             "attitude": "attitude",
@@ -72,7 +72,7 @@ def edit_home(request):
             'address': "1060 Plaza Dr kissimmee fl 34743",
             'country_code': "1",
             'phone_number': "000 0000 0000",
-            'logo': "istockphoto-1354776457-612x612_erjftg",
+            'logo': "default_img",
             'instagram': 'https://www.instagram.com/pinky.beauty.bar/',
             'address_url': 'https://maps.app.goo.gl/vdj2Qj8oC1tehJiL7'
         })
@@ -94,7 +94,7 @@ def edit_home(request):
 def edit_services(request):
     service, created = ServicesPage.objects.get_or_create(
         defaults={
-            'banner': "default/img.png"
+            'banner': "default_img"
         })
 
     categories = Category.objects.all()
@@ -124,7 +124,7 @@ def edit_my_profile(request):
             'address': "1060 Plaza Dr kissimmee fl 34743",
             'country_code': "1",
             'phone_number': "000 0000 0000",
-            'logo': "istockphoto-1354776457-612x612_erjftg",
+            'logo': "default_img",
             'instagram': 'https://www.instagram.com/pinky.beauty.bar/',
             'address_url': 'https://maps.app.goo.gl/vdj2Qj8oC1tehJiL7'
 
@@ -246,13 +246,13 @@ def edit_product(request, pk):
 def edit_about_me(request):
     about_me, created = AboutMePage.objects.get_or_create(
         defaults={
-            "banner": "istockphoto-1354776457-612x612_erjftg",
+            "banner": "default_img",
             "description": "description",
             "competence": "competence",
             "about_me_mission": "about_me_mission",
             "about_me_vision": "about_me_vision",
-            "image1": "istockphoto-1354776457-612x612_erjftg",
-            "image2": "istockphoto-1354776457-612x612_erjftg",
+            "image1": "default_img",
+            "image2": "default_img",
         }
     )
 
