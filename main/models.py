@@ -51,8 +51,8 @@ class AboutMePage(models.Model):
     competence = models.TextField()
     about_me_mission = models.TextField()
     about_me_vision = models.TextField()
-    image1 = CloudinaryField('image', default="default/image_default.png")
-    image2 = CloudinaryField('image', default="default/image_default.png")
+    image1 = CloudinaryField('image', default="https://asset.cloudinary.com/df8ssknyd/10ae5637f62519e129401b51a3186924")
+    image2 = CloudinaryField('image', default="https://asset.cloudinary.com/df8ssknyd/10ae5637f62519e129401b51a3186924")
 
     def __str__(self):
         return "AboutMePage"
