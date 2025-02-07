@@ -18,9 +18,9 @@ DEBUG = 'RENDER' not in os.environ
 ALLOWED_HOSTS = []
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'TU_CLOUD_NAME',
-    'API_KEY': 'TU_API_KEY',
-    'API_SECRET': 'TU_API_SECRET',
+    'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
+    'API_KEY': os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
+    'API_SECRET': os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
 }
 
 
