@@ -125,11 +125,6 @@ def edit_services(request):
 
 
 @login_required
-def edit_contact_me(request):
-    return render(request, 'edit_content_live_contact_me.html', )
-
-
-@login_required
 def edit_my_profile(request):
     instance, created = PinkyBeautyBarInfo.objects.get_or_create(
         defaults={
@@ -182,6 +177,24 @@ def create_category(request):
         form = CategoryForm()
 
     return render(request, 'create_category.html', {'form': form})
+
+
+@login_required
+def edit_category_products(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    if request.method == "POST":
+        form = CategoryForm(request.POST, request.FILES, instance=category)
+
+        if form.is_valid():
+            form.save()
+            return redirect('list_category')  # Redirige para actualizar la vista con los nuevos datos
+
+    else:
+        form = CategoryForm(instance=category)
+
+
+    return render(request, 'edit_category.html', {'form': form})
+
 
 
 @login_required
@@ -614,7 +627,6 @@ def delete_video(request, video_id):
 @login_required
 def edit_beauty_salon_images(request):
     salon_images = PinkyBeautyBarSalonImages.objects.all()
-
     return render(request, 'edit_beauty_salon_images.html', {'salon_images': salon_images})
 
 

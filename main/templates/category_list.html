@@ -16,6 +16,7 @@
                     <h3 class="flex-grow-1 d-flex align-items-center">{{ category.name }}</h3>
                     <div class="w-100">
                         <a class="btn-book-categories-2 btn w-100 mb-2" href="{% url 'category_products' category.id %}">View Products</a>
+                        <a class="btn-book-categories btn w-100 mb-2" href="{% url 'edit_category_products' category.id %}">Edit Category</a>
                         <a href="{% url 'delete_category' category.id %}" class="btn btn-outline-danger border-danger border-opacity-50 w-100" onclick="return confirm('Are you sure about deleting the category?')">Delete</a>
                     </div>
                 </div>

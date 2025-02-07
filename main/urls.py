@@ -16,6 +16,7 @@ urlpatterns = [
     path('dashboard/myProducts/categories/create', views.create_category, name='create_category'),
 
     path('dashboard/myProducts/categories/<int:category_id>/', views.category_products, name='category_products'),
+    path('dashboard/myProducts/categories/edit/<int:category_id>/', views.edit_category_products, name='edit_category_products'),
     path('categories/delete/<int:category_id>/', views.delete_category, name='delete_category'),
 
     path('dashboard/myProducts/products/create/', views.create_product, name='create_product'),
