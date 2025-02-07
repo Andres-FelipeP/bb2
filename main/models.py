@@ -13,7 +13,7 @@ class PinkyBeautyBarInfo(models.Model):
     address = models.TextField(null=True, blank=True)
     country_code = models.IntegerField(null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
-    logo = CloudinaryField('image', CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg"))
+    logo = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
     instagram = models.URLField(max_length=200, blank=True, null=True)
     address_url = models.URLField(null=True, blank=True)
 
