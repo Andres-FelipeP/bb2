@@ -14,6 +14,8 @@ from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.forms import modelformset_factory
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+import random
+import cloudinary
 
 
 
@@ -43,7 +45,6 @@ def admin_logout(request):
     logout(request)
     return redirect('login')
 
-import cloudinary
 
 @login_required
 def edit_home(request):
@@ -65,7 +66,7 @@ def edit_home(request):
     )
 
     salon_images = PinkyBeautyBarSalonImages.objects.all()
-    products_info = Products.objects.all()[:7]
+    products_info = Products.objects.order_by('?')[:7]
 
     pinky_beauty_bar_info, created = PinkyBeautyBarInfo.objects.get_or_create(
         defaults={

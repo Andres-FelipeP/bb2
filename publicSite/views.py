@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from main.models import Category, Products, AboutMePage, HomeContent, PinkyBeautyBarSalonImages, PhotoGallery, Values, Certificates, ServicesPage, PinkyBeautyBarSalonImages, PinkyBeautyBarInfo,VideoGallery, Benefits, Myths, Recommendations, Process
 from django.shortcuts import get_object_or_404
+import random
 
 
 def home(request):
     home_content = HomeContent.objects.first()
     salon_images = PinkyBeautyBarSalonImages.objects.all()
-    products_info = Products.objects.all()[:7]
+    products_info = Products.objects.order_by('?')[:7]
     pinky_beauty_bar_info = PinkyBeautyBarInfo.objects.first()
     categories = Category.objects.all()
 
