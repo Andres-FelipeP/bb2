@@ -43,6 +43,7 @@ def admin_logout(request):
     logout(request)
     return redirect('login')
 
+import cloudinary
 
 @login_required
 def edit_home(request):
@@ -62,6 +63,10 @@ def edit_home(request):
 
         }
     )
+    print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    print(cloudinary.config().cloud_name)  # Debería imprimir tu Cloud Name
+    print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+
     salon_images = PinkyBeautyBarSalonImages.objects.all()
     products_info = Products.objects.all()[:7]
 
