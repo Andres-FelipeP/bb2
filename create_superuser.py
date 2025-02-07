@@ -2,7 +2,7 @@ import os
 import django
 
 # Configurar Django
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tu_proyecto.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pinky_beauty_bar_project.settings")
 django.setup()
 
 from django.contrib.auth import get_user_model
