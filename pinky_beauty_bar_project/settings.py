@@ -22,10 +22,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
+    'API_KEY': os.environ.get('API_KEY'),
+    'API_SECRET': os.environ.get('API_SECRET'),
+}
+
 cloudinary.config(
-    cloud_name = os.environ.get('CLOUD_NAME'),
-    api_key = os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
-    api_secret = os.environ.get('RENDER_EXTERNAL_HOSTNAME'), # Click 'View API Keys' above to copy your API secret
+    cloud_name = "df8ssknyd",
+    api_key = "749872954434776",
+    api_secret = "<your_api_secret>", # Click 'View API Keys' above to copy your API secret
     secure=True
 )
 
