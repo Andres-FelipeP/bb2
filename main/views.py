@@ -67,11 +67,17 @@ def edit_home(request):
 
     salon_images = PinkyBeautyBarSalonImages.objects.all()
 
-    all_ids = list(Products.objects.values_list('id', flat=True))
+    products = list(Products.objects.all())
 
-    random_ids = random.sample(all_ids, min(len(all_ids), 7))
+    if len(products) >= 7:
+        products_info = random.sample(products, 7)
+    else:
 
-    products_info = Products.objects.filter(id__in=random_ids)
+        products_info = products.copy()
+        while len(products_info) < 7:
+            products_info.append(random.choice(products))
+
+
 
     pinky_beauty_bar_info, created = PinkyBeautyBarInfo.objects.get_or_create(
         defaults={

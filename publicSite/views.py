@@ -8,11 +8,16 @@ def home(request):
     home_content = HomeContent.objects.first()
     salon_images = PinkyBeautyBarSalonImages.objects.all()
 
-    all_ids = list(Products.objects.values_list('id', flat=True))
 
-    random_ids = random.sample(all_ids, min(len(all_ids), 7))
+    products = list(Products.objects.all())
 
-    products_info = Products.objects.filter(id__in=random_ids)
+    if len(products) >= 7:
+        products_info = random.sample(products, 7)
+    else:
+
+        products_info = products.copy()
+        while len(products_info) < 7:
+            products_info.append(random.choice(products))
 
 
     pinky_beauty_bar_info = PinkyBeautyBarInfo.objects.first()
