@@ -21,13 +21,13 @@ class PinkyBeautyBarInfo(models.Model):
 
 class HomeContent(models.Model):
     slogan = models.CharField(max_length=200)
-    banner = CloudinaryField('image', max_length=255)
+    banner = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
     who_am_i = models.TextField()
     skills = models.TextField()
-    image1 = CloudinaryField('image', max_length=255)
-    image2 = CloudinaryField('image', max_length=255)
-    image3 = CloudinaryField('image', max_length=255)
-    image4 = CloudinaryField('image', max_length=255)
+    image1 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
+    image2 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
+    image3 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
+    image4 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
     home_mission = models.CharField(max_length=120)
     home_vision = models.CharField(max_length=120)
     attitude = models.CharField(max_length=120)
@@ -46,13 +46,13 @@ class PinkyBeautyBarSalonImages(models.Model):
 
 
 class AboutMePage(models.Model):
-    banner = CloudinaryField('image')
+    banner = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
     description = models.TextField()
     competence = models.TextField()
     about_me_mission = models.TextField()
     about_me_vision = models.TextField()
-    image1 = CloudinaryField('image')
-    image2 = CloudinaryField('image')
+    image1 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
+    image2 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
 
     def __str__(self):
         return "AboutMePage"
@@ -89,15 +89,15 @@ class Category(models.Model):
 
 class Products(models.Model):
     tittle = models.CharField(max_length=200)
-    banner = CloudinaryField('image', default="default/image_default.png")
+    banner = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
     subtittle = models.CharField(max_length=200)
     short_subtittle = models.CharField(max_length=100, default='My product')
     description = models.TextField()
     duration = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image1 = CloudinaryField('image')
-    image2 = CloudinaryField('image')
-    image3 = CloudinaryField('image')
+    image1 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
+    image2 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
+    image3 = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
     categories = models.ManyToManyField(Category, related_name="products")
 
 
@@ -143,7 +143,7 @@ class Recommendations(models.Model):
 
 class PhotoGallery(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='photo_gallery')
-    image = CloudinaryField('image')
+    image = CloudinaryField('image', default='istockphoto-1354776457-612x612_erjftg')
     order = models.IntegerField()
 
 
