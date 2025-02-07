@@ -13,7 +13,7 @@ class PinkyBeautyBarInfo(models.Model):
     address = models.TextField(null=True, blank=True)
     country_code = models.IntegerField(null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
-    logo = CloudinaryField('image', default="default/image_default.png")
+    logo = CloudinaryField('image', CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg"))
     instagram = models.URLField(max_length=200, blank=True, null=True)
     address_url = models.URLField(null=True, blank=True)
 
@@ -21,13 +21,13 @@ class PinkyBeautyBarInfo(models.Model):
 
 class HomeContent(models.Model):
     slogan = models.CharField(max_length=200)
-    banner = models.ImageField(upload_to='home_images/')
+    banner = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
     who_am_i = models.TextField()
     skills = models.TextField()
-    image1 = models.ImageField(upload_to='home_images/')
-    image2 = models.ImageField(upload_to='home_images/')
-    image3 = models.ImageField(upload_to='home_images/')
-    image4 = models.ImageField(upload_to='home_images/')
+    image1 = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
+    image2 = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
+    image3 = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
+    image4 = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
     home_mission = models.CharField(max_length=120)
     home_vision = models.CharField(max_length=120)
     attitude = models.CharField(max_length=120)
@@ -39,20 +39,20 @@ class HomeContent(models.Model):
 class PinkyBeautyBarSalonImages(models.Model):
     tittle = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
-    image = CloudinaryField('image', default="default/image_default.png")
+    image = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
 
     def __str__(self):
         return self.tittle
 
 
 class AboutMePage(models.Model):
-    banner = CloudinaryField('image', default="default/image_default.png")
+    banner = CloudinaryField('image', CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg"))
     description = models.TextField()
     competence = models.TextField()
     about_me_mission = models.TextField()
     about_me_vision = models.TextField()
-    image1 = CloudinaryField('image', default="https://asset.cloudinary.com/df8ssknyd/10ae5637f62519e129401b51a3186924")
-    image2 = CloudinaryField('image', default="https://asset.cloudinary.com/df8ssknyd/10ae5637f62519e129401b51a3186924")
+    image1 = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
+    image2 = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
 
     def __str__(self):
         return "AboutMePage"
