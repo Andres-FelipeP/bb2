@@ -13,7 +13,7 @@ class PinkyBeautyBarInfo(models.Model):
     address = models.TextField(null=True, blank=True)
     country_code = models.IntegerField(null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
-    logo = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
+    logo = CloudinaryField('image')
     instagram = models.URLField(max_length=200, blank=True, null=True)
     address_url = models.URLField(null=True, blank=True)
 
@@ -21,13 +21,13 @@ class PinkyBeautyBarInfo(models.Model):
 
 class HomeContent(models.Model):
     slogan = models.CharField(max_length=200)
-    banner = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
+    banner = CloudinaryField('image')
     who_am_i = models.TextField()
     skills = models.TextField()
-    image1 = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
-    image2 = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
-    image3 = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
-    image4 = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
+    image1 = CloudinaryField('image')
+    image2 = CloudinaryField('image')
+    image3 = CloudinaryField('image')
+    image4 = CloudinaryField('image')
     home_mission = models.CharField(max_length=120)
     home_vision = models.CharField(max_length=120)
     attitude = models.CharField(max_length=120)
@@ -39,20 +39,20 @@ class HomeContent(models.Model):
 class PinkyBeautyBarSalonImages(models.Model):
     tittle = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
-    image = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
+    image = CloudinaryField('image')
 
     def __str__(self):
         return self.tittle
 
 
 class AboutMePage(models.Model):
-    banner = CloudinaryField('image',default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
+    banner = CloudinaryField('image')
     description = models.TextField()
     competence = models.TextField()
     about_me_mission = models.TextField()
     about_me_vision = models.TextField()
-    image1 = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
-    image2 = CloudinaryField('image', default="https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg")
+    image1 = CloudinaryField('image')
+    image2 = CloudinaryField('image')
 
     def __str__(self):
         return "AboutMePage"
@@ -75,7 +75,7 @@ class Certificates(models.Model):
 
 
 class ServicesPage(models.Model):
-    banner = CloudinaryField('image', default="default/image_default.png")
+    banner = CloudinaryField('image')
     def __str__(self):
         return "ServicesPage"
 
@@ -95,9 +95,9 @@ class Products(models.Model):
     description = models.TextField()
     duration = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image1 = CloudinaryField('image', default="default/image_default.png")
-    image2 = CloudinaryField('image', default="default/image_default.png")
-    image3 = CloudinaryField('image', default="default/image_default.png")
+    image1 = CloudinaryField('image')
+    image2 = CloudinaryField('image')
+    image3 = CloudinaryField('image')
     categories = models.ManyToManyField(Category, related_name="products")
 
 
@@ -143,7 +143,7 @@ class Recommendations(models.Model):
 
 class PhotoGallery(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='photo_gallery')
-    image = CloudinaryField('image', default="default/image_default.png")
+    image = CloudinaryField('image')
     order = models.IntegerField()
 
 
@@ -153,7 +153,7 @@ class PhotoGallery(models.Model):
 
 class VideoGallery(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='video_gallery')
-    video_file = CloudinaryField('video', default="default/image_default.png")
+    video_file = CloudinaryField('video')
     video_youtube_url = models.URLField(max_length=200, blank=True, null=True)
     order = models.IntegerField()
 

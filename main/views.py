@@ -53,7 +53,7 @@ def edit_home(request):
             "banner": "default/img.png",
             "who_am_i": "who am i?",
             "skills": "skills",
-            "image1": "default/img.png",
+            "image1": "https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg",
             "image2": "default/img.png",
             "image3": "default/img.png",
             "image4": "default/img.png",
@@ -75,7 +75,7 @@ def edit_home(request):
             'address': "1060 Plaza Dr kissimmee fl 34743",
             'country_code': "1",
             'phone_number': "000 0000 0000",
-            'logo': "default/img.png",
+            'logo': "https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg",
             'instagram': 'https://www.instagram.com/pinky.beauty.bar/',
             'address_url': 'https://maps.app.goo.gl/vdj2Qj8oC1tehJiL7'
         })
@@ -127,7 +127,7 @@ def edit_my_profile(request):
             'address': "1060 Plaza Dr kissimmee fl 34743",
             'country_code': "1",
             'phone_number': "000 0000 0000",
-            'logo': "default/img.png",
+            'logo': "https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg",
             'instagram': 'https://www.instagram.com/pinky.beauty.bar/',
             'address_url': 'https://maps.app.goo.gl/vdj2Qj8oC1tehJiL7'
 
@@ -249,13 +249,13 @@ def edit_product(request, pk):
 def edit_about_me(request):
     about_me, created = AboutMePage.objects.get_or_create(
         defaults={
-            "banner": "default/img.png",
+            "banner": "https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg",
             "description": "description",
             "competence": "competence",
             "about_me_mission": "about_me_mission",
             "about_me_vision": "about_me_vision",
-            "image1": "default/img.png",
-            "image2": "default/img.png",
+            "image1": "https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg",
+            "image2": "https://res.cloudinary.com/df8ssknyd/image/upload/v1738909522/istockphoto-1354776457-612x612_erjftg.jpg",
         }
     )
 
