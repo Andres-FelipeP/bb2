@@ -7,7 +7,14 @@ import random
 def home(request):
     home_content = HomeContent.objects.first()
     salon_images = PinkyBeautyBarSalonImages.objects.all()
-    products_info = Products.objects.order_by('?')[:7]
+
+    all_ids = list(Products.objects.values_list('id', flat=True))
+
+    random_ids = random.sample(all_ids, min(len(all_ids), 7))
+
+    products_info = Products.objects.filter(id__in=random_ids)
+
+
     pinky_beauty_bar_info = PinkyBeautyBarInfo.objects.first()
     categories = Category.objects.all()
 
