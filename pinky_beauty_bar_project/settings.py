@@ -28,14 +28,6 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.environ.get('API_SECRET'),
 }
 
-cloudinary.config(
-    cloud_name = "df8ssknyd",
-    api_key = "749872954434776",
-    api_secret = "<your_api_secret>", # Click 'View API Keys' above to copy your API secret
-    secure=True
-)
-
-
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 
