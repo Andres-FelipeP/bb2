@@ -391,7 +391,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 text-center">
             <img id="preview-image1" src="{{product.image1.url}}" class="img-fluid rounded-5 gc img-1-prod" alt="img-1">
         </div>
     </div>
@@ -528,8 +528,10 @@
                     <!-- Video 1 - YouTube -->
                     <div class="item">
                         <div class="video-container">
-                            <video class="video-iframe" controls >
-                                <source src="{{video.video_file.url}}" type="video/mp4">
+
+                            <video controls preload="metadata" class="video-iframe">
+                                <source src="{{ video.video_file.url }}" type="video/mp4">
+                                No video support
                             </video>
                         </div>
                     </div>
