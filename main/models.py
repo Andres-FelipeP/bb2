@@ -158,3 +158,110 @@ class VideoGallery(models.Model):
 
     def __str__(self):
         return f"Video {self.order}"
+
+def is_default_image(file_path):
+    file_path_str = str(file_path)
+    return "default_img" in file_path_str  # Verifica si la imagen es la predeterminada
+
+def delete_file(file_path):
+    """Elimina el archivo de Cloudinary."""
+    file_path_str = str(file_path)  # Convierte a string
+    if file_path_str and not is_default_image(file_path_str):  # Evita borrar imágenes predeterminadas
+        public_id = file_path_str.split("/")[-1].split(".")[0]  # Obtén el public_id de Cloudinary
+        cloudinary.uploader.destroy(public_id)
+
+
+def delete_old_file(instance, file_field, model_class):
+    """Elimina el archivo antiguo de Cloudinary si cambia."""
+    if instance.pk:
+        try:
+            old_instance = model_class.objects.get(pk=instance.pk)
+            old_file = getattr(old_instance, file_field)
+            new_file = getattr(instance, file_field)
+
+            # Convertir CloudinaryResource a string antes de usarlo
+            old_file_url = str(old_file.url) if old_file else ""
+            new_file_url = str(new_file.url) if new_file else ""
+
+            if old_file and old_file_url and old_file_url != new_file_url and not is_default_image(old_file_url):
+                public_id = old_file_url.split("/")[-1].split(".")[0]  # Obtén el public_id
+                cloudinary.uploader.destroy(public_id)
+        except model_class.DoesNotExist:
+            pass
+
+@receiver(post_delete, sender=Products)
+def delete_products_files(sender, instance, **kwargs):
+    delete_file(instance.banner.url)
+    delete_file(instance.image1.url)
+    delete_file(instance.image2.url)
+    delete_file(instance.image3.url)
+
+@receiver(pre_save, sender=Products)
+def delete_old_products_files(sender, instance, **kwargs):
+    delete_old_file(instance, "banner", Products)
+    delete_old_file(instance, "image1", Products)
+    delete_old_file(instance, "image2", Products)
+    delete_old_file(instance, "image3", Products)
+
+@receiver(post_delete, sender=VideoGallery)
+def delete_videogallery_files(sender, instance, **kwargs):
+    delete_file(instance.video_file)
+
+@receiver(pre_save, sender=VideoGallery)
+def delete_old_videogallery_files(sender, instance, **kwargs):
+    delete_old_file(instance, "video_file", VideoGallery)
+
+@receiver(post_delete, sender=HomeContent)
+def delete_homecontent_files(sender, instance, **kwargs):
+    delete_file(instance.banner.url)
+    delete_file(instance.image1.url)
+    delete_file(instance.image2.url)
+    delete_file(instance.image3.url)
+    delete_file(instance.image4.url)
+
+@receiver(pre_save, sender=HomeContent)
+def delete_old_homecontent_files(sender, instance, **kwargs):
+    delete_old_file(instance, "banner", HomeContent)
+    delete_old_file(instance, "image1", HomeContent)
+    delete_old_file(instance, "image2", HomeContent)
+    delete_old_file(instance, "image3", HomeContent)
+    delete_old_file(instance, "image4", HomeContent)
+
+@receiver(post_delete, sender=PinkyBeautyBarSalonImages)
+def delete_pinky_images(sender, instance, **kwargs):
+    delete_file(instance.image)
+
+@receiver(pre_save, sender=PinkyBeautyBarSalonImages)
+def delete_old_pinky_images(sender, instance, **kwargs):
+    delete_old_file(instance, "image", PinkyBeautyBarSalonImages)
+
+
+@receiver(post_delete, sender=AboutMePage)
+def delete_aboutme_files(sender, instance, **kwargs):
+    delete_file(instance.banner)
+    delete_file(instance.image1)
+    delete_file(instance.image2)
+
+@receiver(pre_save, sender=AboutMePage)
+def delete_old_aboutme_files(sender, instance, **kwargs):
+    delete_old_file(instance, "banner", AboutMePage)
+    delete_old_file(instance, "image1", AboutMePage)
+    delete_old_file(instance, "image2", AboutMePage)
+
+@receiver(post_delete, sender=ServicesPage)
+def delete_servicespage_files(sender, instance, **kwargs):
+    delete_file(instance.banner)
+
+@receiver(pre_save, sender=ServicesPage)
+def delete_old_servicespage_files(sender, instance, **kwargs):
+    delete_old_file(instance, "banner", ServicesPage)
+
+@receiver(post_delete, sender=PhotoGallery)
+def delete_photogallery_files(sender, instance, **kwargs):
+    delete_file(instance.image)
+
+@receiver(pre_save, sender=PhotoGallery)
+def delete_old_photogallery_files(sender, instance, **kwargs):
+    delete_old_file(instance, "image", PhotoGallery)
+
+
