@@ -160,13 +160,16 @@ class VideoGallery(models.Model):
         return f"Video {self.order}"
 
 def is_default_image(file_path):
-    return file_path and "default_img" in file_path  # Verifica si la imagen es la predeterminada
+    file_path_str = str(file_path)
+    return "default_img" in file_path_str  # Verifica si la imagen es la predeterminada
 
 def delete_file(file_path):
     """Elimina el archivo de Cloudinary."""
-    if file_path and not is_default_image(file_path):  # Evita borrar imágenes predeterminadas
-        public_id = file_path.split("/")[-1].split(".")[0]  # Obtén el public_id de Cloudinary
+    file_path_str = str(file_path)  # Convierte a string
+    if file_path_str and not is_default_image(file_path_str):  # Evita borrar imágenes predeterminadas
+        public_id = file_path_str.split("/")[-1].split(".")[0]  # Obtén el public_id de Cloudinary
         cloudinary.uploader.destroy(public_id)
+
 
 def delete_old_file(instance, file_field, model_class):
     """Elimina el archivo antiguo de Cloudinary si cambia."""
@@ -175,12 +178,16 @@ def delete_old_file(instance, file_field, model_class):
             old_instance = model_class.objects.get(pk=instance.pk)
             old_file = getattr(old_instance, file_field)
             new_file = getattr(instance, file_field)
-            if old_file and old_file != new_file and old_file.url and not is_default_image(old_file.url):
-                public_id = old_file.url.split("/")[-1].split(".")[0]  # Obtén el public_id
+
+            # Convertir CloudinaryResource a string antes de usarlo
+            old_file_url = str(old_file.url) if old_file else ""
+            new_file_url = str(new_file.url) if new_file else ""
+
+            if old_file and old_file_url and old_file_url != new_file_url and not is_default_image(old_file_url):
+                public_id = old_file_url.split("/")[-1].split(".")[0]  # Obtén el public_id
                 cloudinary.uploader.destroy(public_id)
         except model_class.DoesNotExist:
             pass
-
 
 @receiver(post_delete, sender=Products)
 def delete_products_files(sender, instance, **kwargs):
