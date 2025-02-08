@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
     'main',
     'publicSite',
     'widget_tweaks',
@@ -136,6 +137,9 @@ STATICFILES_DIRS = [
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

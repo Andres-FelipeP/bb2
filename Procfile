@@ -1,1 +1,1 @@
-web: gunicorn pinky_beauty_bar_project.wsgi
+web: python manage.py collectstatic &&  gunicorn pinky_beauty_bar_project.wsgi
