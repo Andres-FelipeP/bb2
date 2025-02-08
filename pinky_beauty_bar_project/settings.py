@@ -19,7 +19,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['web-production-bb1f8.up.railway.app']
+ALLOWED_HOSTS = ['localhost', 'web-production-bb1f8.up.railway.app']
 
 cloudinary.config(
     cloud_name = os.environ.get('CLOUD_NAME'),
@@ -83,9 +83,7 @@ WSGI_APPLICATION = 'pinky_beauty_bar_project.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'default': { dj_database_url.config(default=os.environ.get('DB_NAME'))
     }
 }
 
@@ -140,6 +138,7 @@ STATICFILES_DIRS = [
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
+CSRF_TRUSTED_ORIGINS = ['https://*','/https://web-production-bb1f8.up.railway.app']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
